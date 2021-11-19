@@ -1,10 +1,5 @@
-@import './layout/header';
-@import './layout/movies';
-@import './layout/footer';
+@import './layout/layout';
 
-@import './utils/variables';
-@import './utils/visually-hidden';
+@import './utils/untils';
 
-@import './base/common';
-@import './base/container';
-@import './base/reset';
+@import './base/base';
