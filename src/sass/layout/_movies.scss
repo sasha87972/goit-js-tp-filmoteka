@@ -23,7 +23,7 @@
 
 .card__description {
   padding-top: 10px;
-  font-family: $primaryFont;
+  font-family: --primaryFont;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.167;
@@ -37,7 +37,7 @@
 .card__text {
   display: inline-block;
   line-height: 1.333;
-  color: $accentColor;
+  color: --accent-color;
 }
 
 .card__vote {
@@ -48,7 +48,7 @@
   height: 16px;
   margin-left: 10px;
   padding: 1px 6px;
-  background-color: $accentColor;
-  color: $whiteTextColor;
+  background-color: --accent-color;
+  color: --white-text-color;
   text-transform: uppercase;
 }

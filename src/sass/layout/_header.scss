@@ -1,5 +1,5 @@
 .header--library {
-  color: $whiteTextColor;
+  color: --white-text-color;
   @media screen and(max-width:767px) {
     background-image: url('/images/header-fav-320.jpg');
   }
@@ -11,7 +11,7 @@
   }
 }
 .header--home {
-  color: $whiteTextColor;
+  color: --white-text-color;
   @media screen and(max-width:767px) {
     background-image: url('/images/header-320.jpg');
   }
@@ -26,7 +26,7 @@
   font-size: 12px;
   text-transform: uppercase;
   font-weight: 500;
-  font-family: $primaryFont;
+  font-family: --primaryFont;
   font-style: normal;
   line-height: 1.16;
   @media screen and(max-width:767px) {
@@ -79,11 +79,11 @@
   width: 130px;
   padding: auto;
   text-transform: uppercase;
-  color: $whiteTextColor;
+  color: --white-text-color;
   background: none;
-  border: 1px solid $whiteTextColor;
+  border: 1px solid --white-text-color;
   box-sizing: border-box;
-  border-radius: $borderRadius;
+  border-radius:--border-radius;
 }
 
 .heder__btn:not(:last-child) {
