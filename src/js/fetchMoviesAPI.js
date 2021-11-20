@@ -59,38 +59,93 @@ const GENRE_URL = `${BASE_URL}/genre/movie/list`;
 
 // // searchMovie('bad boy')
 
-const list = document.querySelector('main');
 
+
+// OLD VERSION
+
+// fetch(`${TREND_URL}?api_key=${API_KEY}&page=1`)
+//   .then(responce => {
+//     return responce.json();
+//   })
+//   .then(film => {
+//     console.log('Film Data', film.results);
+//     const films = FilmCard(film.results);
+//     console.log(films);
+//     insertMovies(films);
+//   })
+//   .catch(error => {
+//     console.log(error);
+//   })
+
+// function insertMovies(object) {
+//   list.innerHTML = object;
+// }
+  
+
+// fetch(`${GENRE_URL}?api_key=${API_KEY}`)
+//   .then(responce => {
+//     return responce.json();
+//   })
+//   .then(genr => {
+//     console.log('GENRES', genr.genres);
+//     return genr.genres
+//   })
+//   .catch(error => {
+//     console.log(error);
+//   })
+
+// MY VERSION
+
+// const list = document.querySelector('main');
+const list = document.querySelector('.film__list');
+let genreArr = [];
+let genresList = [];
+
+  fetch(`${GENRE_URL}?api_key=${API_KEY}`)
+  .then(responce => genreArr = responce.json())
+    .then(genr => {
+      genreArr = genr.genres;
+    console.log(genreArr);
+    return genr.genres
+  })
+  .catch(error => {
+    console.log(error);
+  })
 
 fetch(`${TREND_URL}?api_key=${API_KEY}&page=1`)
   .then(responce => {
     return responce.json();
   })
   .then(film => {
-    console.log('Film Data', film.results);
-    const films = FilmCard(film.results);
-    console.log(films);
+    const trendMovies = film.results;
+    getGenreString(trendMovies);
+    console.log(trendMovies);
+    const films = FilmCard(trendMovies);
     insertMovies(films);
   })
   .catch(error => {
     console.log(error);
-  })
+  }) 
 
 function insertMovies(object) {
   list.innerHTML = object;
 }
-  
+function getGenreString(moviesArr) {
+  moviesArr.forEach(movie => {
+    movie.genre_ids.forEach(genId => {
+      const genreItem = genreArr.find(i => i.id === genId);
+      genId = genreItem.name;
+      genresList.push(genId);
+    })
+    let genreOutput = genresList.slice(0, 3);
+    movie.genre_string = genreOutput.join(', ');
+    genresList = [];
+  })
+}
 
-fetch(`${GENRE_URL}?api_key=${API_KEY}`)
-  .then(responce => {
-    return responce.json();
-  })
-  .then(genr => {
-    console.log('GENRES', genr.genres);
-    return genr.genres
-  })
-  .catch(error => {
-    console.log(error);
-  })
+
+
+
+
 
 
