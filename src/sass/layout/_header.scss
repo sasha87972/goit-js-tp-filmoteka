@@ -146,8 +146,16 @@
     width: 336px;
   }
 }
-.search__icon{
-  position: relative;
-  right: 13px;
-  margin-top: 39px;
+.search__btn{
+  background: none;
+  padding: 0;
+  height: 15px;
+  width: 15px;
+  margin-top: 40px;
+  border: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 0.5px solid $whiteTextColor;
+
 }
