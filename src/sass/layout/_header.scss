@@ -1,5 +1,6 @@
+@import '../utils/variables';
 .header--library {
-  color: --white-text-color;
+  color: $whiteTextColor;
   @media screen and(max-width:767px) {
     background-image: url('/images/header-fav-320.jpg');
   }
@@ -11,7 +12,7 @@
   }
 }
 .header--home {
-  color: --white-text-color;
+  color: $whiteTextColor;
   @media screen and(max-width:767px) {
     background-image: url('/images/header-320.jpg');
   }
@@ -26,7 +27,7 @@
   font-size: 12px;
   text-transform: uppercase;
   font-weight: 500;
-  font-family: --primaryFont;
+  font-family: $primaryFont;
   font-style: normal;
   line-height: 1.16;
   @media screen and(max-width:767px) {
@@ -79,11 +80,11 @@
   width: 130px;
   padding: auto;
   text-transform: uppercase;
-  color: --white-text-color;
+  color: $whiteTextColor;
   background: none;
-  border: 1px solid --white-text-color;
+  border: 1px solid $whiteTextColor;
   box-sizing: border-box;
-  border-radius:--border-radius;
+  border-radius: $borderRadius;
 }
 
 .heder__btn:not(:last-child) {
