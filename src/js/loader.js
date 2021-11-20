@@ -4,5 +4,5 @@ window.addEventListener('load', () => {
 hide.classList.add('behind');
 setTimeout(() => {
     hide.remove();
-}, 600);
+}, 6000);
 });
