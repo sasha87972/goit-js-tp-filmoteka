@@ -25,11 +25,11 @@
 }
 .header__container {
   font-size: 12px;
-  text-transform: uppercase;
   font-weight: 500;
   font-family: $primaryFont;
   font-style: normal;
   line-height: 1.16;
+
   @media screen and(max-width:767px) {
     margin-left: 20px;
     margin-right: 20px;
@@ -46,13 +46,15 @@
 .nav__list {
   display: flex;
   justify-content: end;
+  text-transform: uppercase;
+
 }
 .nav__item {
   display: flex;
   padding-top: 58px;
+  &:not(:first-child) {
+    margin-left: 39px;
 }
-.nav__item:not(:first-child) {
-  margin-left: 39px;
 }
 .nav__item--curent {
   position: relative;
@@ -68,13 +70,42 @@
     position: absolute;
   }
 }
+.nav__head{
+  position: absolute;
+  @media screen and(max-width:767px) {
+   // display: none;
+    top: 46px;
+  }
+  @media screen and(min-width:768px){
+    top:41px;
+    left: 105px;
+    font-weight: 500;
+    font-family: $primaryFont;
+    font-style: normal;
+    font-size: 30px;
+    line-height: 1.16;
+  }
+  &::before{
+    content: url('/images/icons/favicone.svg');
+    width: 24px;
+    height: 24px;
+    fill:#818181;
+    padding-right: 10px;
+  }
+}
+.nav__head--text{
+  @media screen and(max-width:767px) {
+    display: none;
+  }
+}
 .btn {
   display: flex;
   justify-content: center;
   padding-top: 37px;
   padding-bottom: 65px;
-}
+  text-transform: uppercase;
 
+}
 .heder__btn {
   height: 44px;
   width: 130px;
@@ -85,30 +116,38 @@
   border: 1px solid $whiteTextColor;
   box-sizing: border-box;
   border-radius: $borderRadius;
-}
-
-.heder__btn:not(:last-child) {
+  &:not(:last-child) {
   margin-right: 15px;
   @media screen and(max-width:767px) {
     margin-right: 20px;
   }
 }
+}
 .heder__btn:active {
   background: #ff6b01;
 }
-.search-form {
+.search__form {
   display: flex;
   justify-content: center;
 }
-.search-input {
+.search__input {
   margin-bottom: 97px;
   margin-top: 38px;
   background: none;
-  border: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 0.5px solid $whiteTextColor;
+  color: $whiteTextColor;  
   @media screen and(max-width:767px) {
     width: 100%;
   }
   @media screen and(min-width:768px) {
     width: 336px;
   }
+}
+.search__icon{
+  position: relative;
+  right: 13px;
+  margin-top: 39px;
 }
