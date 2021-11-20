@@ -1,19 +1,19 @@
 export default [
     {
         name: 'Alexandra Vdovychenko',
-        photo: '../images/team/alexandra.jpg',
+        photo: 'https://raw.githubusercontent.com/sasha87972/goit-js-tp-filmoteka/main/src/images/team/alexandra.jpg',
     },
     {
         name: 'Iryna Shandar',
-        photo: '../images/team/iryna.jpg',  
+        photo: 'https://raw.githubusercontent.com/sasha87972/goit-js-tp-filmoteka/main/src/images/team/iryna.jpg',  
     },
     {
         name: 'Roman Polosmak',
-        photo: '../images/photo.jpg',  
+        photo: './images/photo.jpg',  
     },
     {
         name: 'Nadya Mincheva',
-        photo: '/images/team/nadya.jpg', 
+        photo: 'https://raw.githubusercontent.com/sasha87972/goit-js-tp-filmoteka/main/src/images/team/nadya.jpg', 
     },
     {
         name: 'Alexander Kovalenko',
@@ -25,10 +25,10 @@ export default [
     },
     {
         name: 'Yuliya Danilenkova',
-        photo: '../images/photo.jpg',
+        photo: '../images/team/yuliya.jpg',
     },
     {
         name: 'Volodymyr Kovalenko',
-        photo: '/images/team/volodymyr.jpg',
+        photo: 'https://raw.githubusercontent.com/sasha87972/goit-js-tp-filmoteka/main/src/images/team/volodymyr.jpg',
     },
 ];

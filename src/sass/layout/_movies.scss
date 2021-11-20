@@ -1,3 +1,6 @@
+
+@import '../utils/variables';
+
 // .gallery {
 //   @media screen and (min-width: 768px) {
 //     display: flex;
@@ -22,6 +25,7 @@
 // }
 
 
+
 .card__description {
   padding-top: 10px;
   font-family: $primaryFont;
@@ -30,10 +34,11 @@
   line-height: 1.167;
 }
 
-// .card__title {
-//   color: var(--black-text-color);
-//   text-transform: uppercase;
-// }
+
+.card__title {
+  color: $blackTextColor;
+  text-transform: uppercase;
+}
 
 
 .card__text {
