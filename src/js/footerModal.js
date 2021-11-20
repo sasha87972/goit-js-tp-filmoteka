@@ -1,4 +1,4 @@
-import getRefs from '../js/get-refs';
+import getRefs from './get-refs';
 import teamMembers from './teamCard';
 import footerLightboxTpl from '../templates/footerModal.hbs';
 
@@ -49,4 +49,5 @@ function onLightboxOpen(e) {
 
     window.removeEventListener('keydown', onEscBtnPress);
   }
+  
 }
