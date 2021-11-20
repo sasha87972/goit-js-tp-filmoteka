@@ -3,14 +3,14 @@
   "version": "1.1.0",
   "description": "",
   "main": "index.js",
-  "homepage": "https://goitacademy.github.io/sasha87972",
+  "homepage": "https://sasha87972.github.io/goit-js-tp-filmoteka",
   "scripts": {
     "dev": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /sasha87972/"
+    "build": "parcel build src/*.html --public-url /goit-js-tp-filmoteka/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/goitacademy/sasha87972.git"
+    "url": "git+https://github.com/sasha87972/goit-js-tp-filmoteka.git"
   },
   "keywords": [],
   "author": "Alexander Repeta <alexander.repeta@gmail.com>",
