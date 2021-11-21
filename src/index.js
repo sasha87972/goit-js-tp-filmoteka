@@ -7,5 +7,6 @@ import './js/library';
 
 import './js/footerModal';
 
+import './js/loader';
 
 
