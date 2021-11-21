@@ -2,7 +2,7 @@ let hide = document.querySelector('.hide');
 
 window.addEventListener('load', () => {
 hide.classList.add('behind');
-setTimeout(() => {
+setTimeout(() =>  {
     hide.remove();
-}, 6000);
+}, 3000);
 });
