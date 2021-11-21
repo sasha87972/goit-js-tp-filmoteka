@@ -15,6 +15,7 @@ html {
 
 body {
   font-family: $primaryFont;
+  font-family: 'Roboto', sans-serif;
 }
 
 body.modal-open {
@@ -35,7 +36,7 @@ li {
 }
 
 ul {
-  list-style-type: none;
+  list-style: none;
 }
 
 input,
