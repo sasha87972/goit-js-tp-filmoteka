@@ -13,7 +13,6 @@
   @media screen and (min-width: 768px) {
     display: flex;
     flex-wrap: wrap;
-    
   }
 }
 
@@ -63,14 +62,14 @@
 }
 
 .film__title {
-  color: var(--black-text-color);
+  color: $blackTextColor;
   text-transform: uppercase;
 }
 
 .film__info {
   display: inline-block;
   line-height: 1.333;
-  color: var(--accent-color);
+  color: $accentColor;
 }
 
 .film__vote {
@@ -83,8 +82,8 @@
 
   text-align: center;
 
-  background-color: var(--accent-color);
-  color: var(--white-text-color);
+  background-color: $accentColor;
+  color: $whiteTextColor;
 
   border-radius: 5px;
 }
