@@ -20,6 +20,7 @@
     border-left-color: #ff6b08;
     animation: loader 1.3s linear infinite;
 }
+
 @keyframes loader {
     100% {
         transform: rotate(360deg);
