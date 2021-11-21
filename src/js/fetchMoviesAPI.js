@@ -48,7 +48,7 @@ const GENRE_URL = `${BASE_URL}/genre/movie/list`;
 //     }).then(movie =>
       
 //         console.log('object',movie))
-        
+
 // }
 
 // // renderParamsCard(3)
@@ -101,16 +101,16 @@ const list = document.querySelector('.film__list');
 let genreArr = [];
 let genresList = [];
 
-  fetch(`${GENRE_URL}?api_key=${API_KEY}`)
-  .then(responce => genreArr = responce.json())
-    .then(genr => {
-      genreArr = genr.genres;
+fetch(`${GENRE_URL}?api_key=${API_KEY}`)
+  .then(responce => (genreArr = responce.json()))
+  .then(genr => {
+    genreArr = genr.genres;
     console.log(genreArr);
-    return genr.genres
+    return genr.genres;
   })
   .catch(error => {
     console.log(error);
-  })
+  });
 
 fetch(`${TREND_URL}?api_key=${API_KEY}&page=1`)
   .then(responce => {
@@ -119,13 +119,14 @@ fetch(`${TREND_URL}?api_key=${API_KEY}&page=1`)
   .then(film => {
     const trendMovies = film.results;
     getGenreString(trendMovies);
+    getYearString(trendMovies);
     console.log(trendMovies);
     const films = FilmCard(trendMovies);
     insertMovies(films);
   })
   .catch(error => {
     console.log(error);
-  }) 
+  });
 
 function insertMovies(object) {
   list.innerHTML = object;
@@ -136,11 +137,17 @@ function getGenreString(moviesArr) {
       const genreItem = genreArr.find(i => i.id === genId);
       genId = genreItem.name;
       genresList.push(genId);
-    })
+    });
     let genreOutput = genresList.slice(0, 3);
     movie.genre_string = genreOutput.join(', ');
     genresList = [];
-  })
+  });
+}
+function getYearString(moviesArr) {
+  moviesArr.forEach(movie => {
+    movie.release_date = new Date(movie.release_date).getFullYear();
+    return movie.release_date;
+  });
 }
 
 
