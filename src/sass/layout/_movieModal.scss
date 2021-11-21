@@ -41,12 +41,6 @@
 
 .lightbox__content {
   position: relative;
-  //   @media screen and (max-width: 767px) {
-  //     margin-top: 20px;
-  //     padding-bottom: 20px;
-  //     top: 20%;
-  //     transform: translateY(-20%);
-  //   }
   transition: transform $primaryTransition;
 }
 
@@ -120,6 +114,12 @@
 .info__title {
   display: inline-block;
   width: 100px;
+  @media screen and (min-width: 768px) {
+    width: 108px;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 152px;
+  }
   font-size: 12px;
   line-height: 1.33;
   color: #8c8c8c;
@@ -128,6 +128,12 @@
 .info__description {
   display: inline-block;
   width: 140px;
+  @media screen and (min-width: 768px) {
+    width: 156px;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 244px;
+  }
   font-size: 12px;
   line-height: 1.167;
   &--vote {
@@ -171,6 +177,7 @@
 .modalBtn__item {
   width: 112px;
   height: 44px;
+  cursor: pointer;
   @media screen and (min-width: 768px) {
     width: 125px;
   }
@@ -190,12 +197,22 @@
     color: $whiteTextColor;
     @media screen and (min-width: 1024px) {
       margin-right: 15px;
+      &:focus,
+      &:hover {
+        background: $accentColorHover;
+      }
     }
   }
   &--queueBtn {
     border: 1px solid $blackTextColor;
     color: $blackTextColor;
     background: $whiteTextColor;
+    &:focus,
+    &:hover {
+      border: none;
+      background: $accentColor;
+      color: $whiteTextColor;
+    }
   }
 }
 
@@ -220,7 +237,7 @@
     fill: currentColor;
   }
   &:hover,
-  :focus {
+  &:focus {
     color: $accentColor;
   }
 }
