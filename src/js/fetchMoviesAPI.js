@@ -1,5 +1,10 @@
 // console.log('hello world')
 import FilmCard from '../templates/filmCard.hbs';
+import FilmModalTpl from '../templates/filmModal.hbs';
+
+import getRefs from './get-refs';
+
+const refs = getRefs();
 
 const API_KEY = '0556b87ba267edab76fd3e7e8d7e5097';
 
@@ -8,7 +13,6 @@ const TREND_URL = `${BASE_URL}/trending/movie/week`;
 const SEARCH_URL = `${BASE_URL}/search/movie`;
 const ID_URL = `${BASE_URL}/movie/`;
 const GENRE_URL = `${BASE_URL}/genre/movie/list`;
-
 
 // // fetch(`${ID_URL}3?api_key=${API_KEY}`).then(respons => {
 
@@ -38,15 +42,13 @@ const GENRE_URL = `${BASE_URL}/genre/movie/list`;
 //   return baseFetch(REQUEST_ADRESS);
 // }
 
-
-
 // function baseFetch(REQUEST_ADRESS) {
 //   return fetch(REQUEST_ADRESS)
 //     .then(response => {
 //       // console.log('2',response.json())
 //       return response.json();
 //     }).then(movie =>
-      
+
 //         console.log('object',movie))
 
 // }
@@ -58,8 +60,6 @@ const GENRE_URL = `${BASE_URL}/genre/movie/list`;
 // getTrend(1)
 
 // // searchMovie('bad boy')
-
-
 
 // OLD VERSION
 
@@ -80,7 +80,6 @@ const GENRE_URL = `${BASE_URL}/genre/movie/list`;
 // function insertMovies(object) {
 //   list.innerHTML = object;
 // }
-  
 
 // fetch(`${GENRE_URL}?api_key=${API_KEY}`)
 //   .then(responce => {
@@ -97,7 +96,6 @@ const GENRE_URL = `${BASE_URL}/genre/movie/list`;
 // MY VERSION
 
 // const list = document.querySelector('main');
-const list = document.querySelector('.film__list');
 let genreArr = [];
 let genresList = [];
 
@@ -129,7 +127,7 @@ fetch(`${TREND_URL}?api_key=${API_KEY}&page=1`)
   });
 
 function insertMovies(object) {
-  list.innerHTML = object;
+  refs.list.innerHTML = object;
 }
 function getGenreString(moviesArr) {
   moviesArr.forEach(movie => {
@@ -149,10 +147,19 @@ function getYearString(moviesArr) {
     return movie.release_date;
   });
 }
+function getDetailInfo(id) {
+  fetch(`${BASE_URL}/movie/${id}?api_key=${API_KEY}`)
+    .then(responce => {
+      return responce.json();
+    })
+    .then(film => {
+      console.log(film);
+      const filInfo = FilmModalTpl(film);
+      refs.filmModalInfo.innerHTML = filInfo;
+    })
+    .catch(error => {
+      console.log(error);
+    });
+}
 
-
-
-
-
-
-
+export { getDetailInfo };

@@ -1,0 +1,226 @@
+@import '../utils/variables';
+
+/* Lightbox */
+.lightbox {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  padding: 20px;
+  overflow-y: scroll;
+  @media screen and (min-width: 768px) {
+    align-items: center;
+  }
+
+  opacity: 0;
+
+  pointer-events: none;
+  transition: opacity $primaryTransition;
+}
+
+.lightbox.is-open {
+  opacity: 1;
+  pointer-events: initial;
+}
+
+.lightbox__overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  max-height: 100vh;
+  background: $blackTextColor;
+  opacity: 0.25;
+}
+
+.lightbox__content {
+  position: relative;
+  //   @media screen and (max-width: 767px) {
+  //     margin-top: 20px;
+  //     padding-bottom: 20px;
+  //     top: 20%;
+  //     transform: translateY(-20%);
+  //   }
+  transition: transform $primaryTransition;
+}
+
+.lightbox.is-open .lightbox__content {
+  transform: scale(1);
+}
+
+.film-card {
+  position: relative;
+  display: block;
+  padding: 48px 20px 41px;
+  width: 280px;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    width: 618px;
+    padding: 42px 30px 40px;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 884px;
+    padding: 50px 30px 40px;
+  }
+  font-family: Roboto;
+  font-weight: 500;
+  background: $whiteTextColor;
+  color: $blackTextColor;
+}
+
+.film-card__poster {
+  width: 240px;
+  margin-bottom: 30px;
+  border-radius: 5px;
+  @media screen and (min-width: 768px) {
+    margin: 0;
+    width: 264px;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 396px;
+  }
+}
+
+.film-card__description {
+  width: 240px;
+  @media screen and (min-width: 768px) {
+    margin-left: 30px;
+    width: 264px;
+  }
+  @media screen and (min-width: 1024px) {
+    margin-left: 32px;
+    width: 396px;
+  }
+}
+
+.film-card__title {
+  margin-bottom: 20px;
+  font-size: 20px;
+  line-height: 1.15;
+}
+
+.film-card__info {
+  margin-bottom: 20px;
+}
+
+.info__item {
+  display: flex;
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
+
+.info__title {
+  display: inline-block;
+  width: 100px;
+  font-size: 12px;
+  line-height: 1.33;
+  color: #8c8c8c;
+}
+
+.info__description {
+  display: inline-block;
+  width: 140px;
+  font-size: 12px;
+  line-height: 1.167;
+  &--vote {
+    display: inline-block;
+    padding: 1px 6px;
+    width: 36px;
+    height: 16px;
+    text-align: center;
+    background-color: $accentColor;
+    color: $whiteTextColor;
+    border-radius: 5px;
+  }
+  &--title {
+    text-transform: uppercase;
+  }
+}
+
+.info__about {
+  margin-bottom: 10px;
+  font-size: 12px;
+  line-height: 1.33;
+  text-transform: uppercase;
+}
+
+.info__text {
+  margin-bottom: 20px;
+  font-size: 12px;
+  line-height: 1.167;
+}
+
+.modalBtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  @media screen and (min-width: 1024px) {
+    justify-content: left;
+    align-items: flex-start;
+  }
+}
+
+.modalBtn__item {
+  width: 112px;
+  height: 44px;
+  @media screen and (min-width: 768px) {
+    width: 125px;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 136px;
+  }
+  border-radius: 5px;
+  font-family: Roboto;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  text-transform: uppercase;
+  &--watchedBtn {
+    border: none;
+    background: $accentColor;
+    text-transform: uppercase;
+    color: $whiteTextColor;
+    @media screen and (min-width: 1024px) {
+      margin-right: 15px;
+    }
+  }
+  &--queueBtn {
+    border: 1px solid $blackTextColor;
+    color: $blackTextColor;
+    background: $whiteTextColor;
+  }
+}
+
+.closeBtn {
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: transparent;
+  &__icon {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
+  }
+  &:hover,
+  :focus {
+    color: $accentColor;
+  }
+}
