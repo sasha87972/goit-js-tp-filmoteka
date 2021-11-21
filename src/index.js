@@ -7,4 +7,4 @@ import './js/footerModal';
 
 import './js/loader';
 
-
+import './js/movieModal';
