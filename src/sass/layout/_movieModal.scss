@@ -190,29 +190,14 @@
   font-size: 12px;
   line-height: 1.33;
   text-transform: uppercase;
-  &--watchedBtn {
+  border: 1px solid $blackTextColor;
+  color: $blackTextColor;
+  background: $whiteTextColor;
+  &:focus,
+  &:hover {
     border: none;
     background: $accentColor;
-    text-transform: uppercase;
     color: $whiteTextColor;
-    @media screen and (min-width: 1024px) {
-      margin-right: 15px;
-      &:focus,
-      &:hover {
-        background: $accentColorHover;
-      }
-    }
-  }
-  &--queueBtn {
-    border: 1px solid $blackTextColor;
-    color: $blackTextColor;
-    background: $whiteTextColor;
-    &:focus,
-    &:hover {
-      border: none;
-      background: $accentColor;
-      color: $whiteTextColor;
-    }
   }
 }
 
