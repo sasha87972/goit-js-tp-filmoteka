@@ -56,6 +56,11 @@
   &:not(:first-child) {
     margin-left: 39px;
   }
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    color: $whiteTextHover;
+  }
 }
 .nav__item--curent {
   position: relative;
@@ -106,7 +111,7 @@
   padding-bottom: 65px;
   text-transform: uppercase;
 }
-.heder__btn {
+.header__btn {
   height: 44px;
   width: 130px;
   padding: auto;
@@ -123,7 +128,7 @@
     }
   }
 }
-.heder__btn:active {
+.header__btn:active {
   background: #ff6b01;
 }
 .search__form {
