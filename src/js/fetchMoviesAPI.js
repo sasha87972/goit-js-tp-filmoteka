@@ -153,13 +153,23 @@ function getDetailInfo(id) {
       return responce.json();
     })
     .then(film => {
-      console.log(film);
+      getGenreNames(film);
       const filInfo = FilmModalTpl(film);
       refs.filmModalInfo.innerHTML = filInfo;
     })
     .catch(error => {
       console.log(error);
     });
+}
+
+function getGenreNames(film) {
+  film.genres.forEach(genre => {
+    const genreItem = genre.name;
+    genresList.push(genreItem);
+  });
+  let genreOutput = genresList.slice(0, 3);
+  film.genre_string = genreOutput.join(', ');
+  genresList = [];
 }
 
 export { getDetailInfo };
