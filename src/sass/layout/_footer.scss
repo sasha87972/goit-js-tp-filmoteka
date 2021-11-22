@@ -2,6 +2,16 @@
   background: #f7f7f7;
 }
 
+.footer__theme--light {
+  background: #f7f7f7;
+  color: #545454;
+}
+
+.footer__theme--dark {
+  background: #545454;
+  color: #f7f7f7;
+}
+
 .footer__box {
   padding-top: 30px;
   padding-bottom: 30px;
@@ -19,7 +29,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 1.14;
-  color: #545454;
+  // color: #545454;
 
   @media screen and(min-width: 768px) {
     font-size: 16px;
