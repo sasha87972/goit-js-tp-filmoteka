@@ -154,8 +154,8 @@ function getDetailInfo(id) {
     })
     .then(film => {
       getGenreNames(film);
-      const filInfo = FilmModalTpl(film);
-      refs.filmModalInfo.innerHTML = filInfo;
+      const filmInfo = FilmModalTpl(film);
+      refs.filmModalInfo.innerHTML = filmInfo;
     })
     .catch(error => {
       console.log(error);
