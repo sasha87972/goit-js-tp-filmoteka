@@ -1,3 +1,4 @@
+
 const refs = {
     header: document.querySelector('header'),
     logo: document.querySelector('.nav__head'),
@@ -5,13 +6,15 @@ const refs = {
     libraryBtn: document.querySelector('#library'),
     searchForm: document.querySelector('.search__form'),
     searchInput: document.querySelector('.search__input'),
-    searchIcon: document.querySelector('.search__icon'),
-    libraryControls: document.querySelector('.btn')
+    libraryControls: document.querySelector('.btn'),
+    watchedBtn: document.querySelector('#watched'),
+    queueBtn: document.querySelector('#queue')
 }
 
 refs.libraryBtn.addEventListener('click', switchToLib);
-refs.homeBtn.addEventListener('click', switchToHome);
 refs.logo.addEventListener('click', switchToHome);
+refs.homeBtn.addEventListener('click', switchToHome);
+
 function switchToHome() {
     refs.libraryBtn.classList.remove('nav__item--curent');
     refs.homeBtn.classList.add('nav__item--curent');
@@ -28,3 +31,6 @@ function switchToLib() {
     refs.searchForm.classList.add('visually-hidden');
     refs.libraryControls.classList.remove('visually-hidden');
 }
+
+
+

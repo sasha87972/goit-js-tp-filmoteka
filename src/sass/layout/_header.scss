@@ -109,8 +109,8 @@
 .btn {
   display: flex;
   justify-content: center;
-  padding-top: 37px;
-  padding-bottom: 65px;
+  padding-top: 40px;
+  padding-bottom: 80px;
   text-transform: uppercase;
 }
 .header__btn {
@@ -123,6 +123,10 @@
   border: 1px solid $whiteTextColor;
   box-sizing: border-box;
   border-radius: $borderRadius;
+  &:hover,
+  &:focus {
+    background-color: $accentColorHover;
+  }
   &:not(:last-child) {
     margin-right: 15px;
     @media screen and(max-width:767px) {
@@ -130,17 +134,23 @@
     }
   }
 }
-.header__btn:active {
+.header__btn--current {
   background: #ff6b01;
+  border: none;
 }
 .search__form {
   display: flex;
   justify-content: center;
 }
+.search__inner {
+  border-bottom: 0.5px solid $whiteTextColor;
+  margin-top: 38px;
+  margin-bottom: 97px;
+}
 .search__input {
   margin-bottom: 97px;
   margin-top: 38px;
-  padding: 7px 10px ;
+  padding: 7px 10px;
   background: none;
   border-top: none;
   border-left: none;

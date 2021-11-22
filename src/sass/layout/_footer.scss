@@ -69,47 +69,71 @@
   }
 }
 
+// Nana's version
+// .footer__icon {
+//   animation: heartbeat 1s infinite;
+//   background-color: #ff6b08;
+//   display: inline-block;
+//   height: 10px;
+//   margin: 0 10px;
+//   transform: rotate(-45deg);
+//   left: 45%;
+//   top: 45%;
+//   width: 10px;
+// }
+
+// .footer__icon:before,
+// .footer__icon:after {
+//   content: '';
+//   background-color: #ff3908;
+//   border-radius: 50%;
+//   height: 10px;
+//   position: absolute;
+//   width: 10px;
+// }
+
+// .footer__icon:before {
+//   top: -5px;
+//   left: 0;
+// }
+
+// .footer__icon:after {
+//   left: 5px;
+//   top: 0;
+// }
+
+// @keyframes heartbeat {
+//   0% {
+//     transform: scale(1) rotate(-45deg);
+//   }
+//   20% {
+//     transform: scale(1.25) rotate(-45deg);
+//   }
+//   40% {
+//     transform: scale(1.5) rotate(-45deg);
+//   }
+// }
+
 .footer__icon {
   animation: heartbeat 1s infinite;
-  background-color: #ff6b08;
+  fill: #ff6b08;
   display: inline-block;
-  height: 10px;
+  height: 15px;
   margin: 0 10px;
-  transform: rotate(-45deg);
   left: 45%;
   top: 45%;
-  width: 10px;
-}
-
-.footer__icon:before,
-.footer__icon:after {
-  content: '';
-  background-color: #ff3908;
-  border-radius: 50%;
-  height: 10px;
-  position: absolute;
-  width: 10px;
-}
-
-.footer__icon:before {
-  top: -5px;
-  left: 0;
-}
-
-.footer__icon:after {
-  left: 5px;
-  top: 0;
+  width: 15px;
 }
 
 @keyframes heartbeat {
   0% {
-    transform: scale(1) rotate(-45deg);
+    transform: scale(1);
   }
   20% {
-    transform: scale(1.25) rotate(-45deg);
+    transform: scale(1.25);
   }
   40% {
-    transform: scale(1.5) rotate(-45deg);
+    transform: scale(1.5);
   }
 }
 
