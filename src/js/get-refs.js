@@ -9,6 +9,6 @@ export default function getRefs() {
     filmModal: document.querySelector('.js-lightbox'),
     filmModalInfo: document.querySelector('.film-card'),
     closeModalBtn: document.querySelector('.closeBtn'),
-    form: document.getElementById('search__form'),
+    form: document.getElementById('js-search__form'),
   };
 }
