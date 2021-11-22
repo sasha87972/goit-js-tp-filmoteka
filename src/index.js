@@ -9,3 +9,5 @@ import './js/loader';
 
 import './js/movieModal';
 import './js/header';
+
+import './js/storage'
