@@ -55,7 +55,6 @@
   width: 280px;
   @media screen and (min-width: 768px) {
     display: flex;
-    flex-direction: row;
     width: 618px;
     padding: 42px 30px 40px;
   }
@@ -183,6 +182,9 @@
   }
   @media screen and (min-width: 1024px) {
     width: 136px;
+    &:first-child {
+      margin-right: 15px;
+    }
   }
   border-radius: 5px;
   font-family: Roboto;
