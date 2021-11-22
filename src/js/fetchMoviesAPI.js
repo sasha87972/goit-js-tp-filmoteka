@@ -103,7 +103,7 @@ let genresList = [];
   .then(responce => (genreArr = responce.json()))
   .then(genr => {
     genreArr = genr.genres;
-    console.log(genreArr);
+    // console.log(genreArr);
     return genr.genres;
   })
   .catch(error => {
@@ -118,7 +118,7 @@ let genresList = [];
     const trendMovies = film.results;
     getGenreString(trendMovies);
     getYearString(trendMovies);
-    console.log(trendMovies);
+    // console.log(trendMovies);
     const films = FilmCard(trendMovies);
     insertMovies(films);
   })
@@ -148,6 +148,7 @@ function getYearString(moviesArr) {
     return movie.release_date;
   });
 }
+
 function getDetailInfo(id) {
   fetch(`${BASE_URL}/movie/${id}?api_key=${API_KEY}`)
     .then(responce => {

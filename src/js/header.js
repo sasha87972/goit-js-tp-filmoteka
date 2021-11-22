@@ -21,6 +21,7 @@ function switchToHome() {
     refs.header.classList.replace('header--library', 'header--home');
     refs.searchForm.classList.remove('visually-hidden');
     refs.libraryControls.classList.add('visually-hidden');
+    refs.logo.classList.add('header--home');
 }
 
 function switchToLib() {
