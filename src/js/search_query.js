@@ -25,6 +25,7 @@ async function onHandlerInput(e) {
   const search = e.currentTarget.elements.query.value;
   const getElements = await getMovie(search);
   renderPage(getElements);
+  refs.form.reset();
 }
 
 function getMovie(query) {
