@@ -1,7 +1,8 @@
+import smoothScrool from './smothScrool';
 import getRefs from './get-refs';
 
+
 const refs = getRefs();
-window.scrollTo({ top: 0, behavior: 'smooth' });
 window.addEventListener('scroll', trackScroll);
 refs.goTopBtn.addEventListener('click', backToTop);
 

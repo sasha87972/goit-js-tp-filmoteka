@@ -99,18 +99,18 @@ const GENRE_URL = `${BASE_URL}/genre/movie/list`;
 let genreArr = [];
 let genresList = [];
 
-fetch(`${GENRE_URL}?api_key=${API_KEY}`)
+  fetch(`${GENRE_URL}?api_key=${API_KEY}`)
   .then(responce => (genreArr = responce.json()))
   .then(genr => {
     genreArr = genr.genres;
-    console.log(genreArr);
+    // console.log(genreArr);
     return genr.genres;
   })
   .catch(error => {
     console.log(error);
   });
 
-fetch(`${TREND_URL}?api_key=${API_KEY}&page=1`)
+  fetch(`${TREND_URL}?api_key=${API_KEY}&page=1`)
   .then(responce => {
     return responce.json();
   })
@@ -118,13 +118,14 @@ fetch(`${TREND_URL}?api_key=${API_KEY}&page=1`)
     const trendMovies = film.results;
     getGenreString(trendMovies);
     getYearString(trendMovies);
-    console.log(trendMovies);
+    // console.log(trendMovies);
     const films = FilmCard(trendMovies);
     insertMovies(films);
   })
   .catch(error => {
     console.log(error);
   });
+
 
 function insertMovies(object) {
   refs.list.innerHTML = object;
@@ -147,6 +148,7 @@ function getYearString(moviesArr) {
     return movie.release_date;
   });
 }
+
 function getDetailInfo(id) {
   fetch(`${BASE_URL}/movie/${id}?api_key=${API_KEY}`)
     .then(responce => {
@@ -173,3 +175,4 @@ function getGenreNames(film) {
 }
 
 export { getDetailInfo };
+
