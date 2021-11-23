@@ -11,7 +11,9 @@ refs.form.addEventListener('submit', async e => {
   const value = e.currentTarget.elements.query.value.trim();
   if (value === '') return;
 
-  const getFilmList = await API.searchMovies(value);
+  await API.querySearch(value);
+  const getFilmList = await API.searchMovies();
+
   renderPage(getFilmList);
   refs.form.reset();
 });

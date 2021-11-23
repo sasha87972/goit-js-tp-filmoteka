@@ -12,22 +12,22 @@ export default class GetMovies {
     this.TREND_URL = `${BASE_URL}/trending/movie/week`;
   }
 
-  async searchMovies(query) {
-    return fetch(`${this.SEARCH_URL}?api_key=${this.key}&query=${query}`).then(response =>
-      response.json(),
-    );
+  async searchMovies() {
+    const response = await fetch(`${this.SEARCH_URL}?api_key=${this.key}&query=${this.query}`);
+    return await response.json();
   }
 
   async genreMovies() {
-    return fetch(`${this.GENRE_URL}`).then(resp => resp.json());
+    const response = await fetch(`${this.GENRE_URL}?api_key=${this.key}`);
+    const newMoviesCard = await response.json();
+    return newMoviesCard;
   }
 
-  // get querySearch() {
-  //   return this.query;
-  // }
+  get querySearch() {
+    return this.query;
+  }
 
-  // set querySearch(query) {
-  //   console.log(query);
-  //   this.query = query;
-  // }
+  set querySearch(query) {
+    this.query = query;
+  }
 }
