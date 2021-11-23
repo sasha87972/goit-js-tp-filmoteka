@@ -1,6 +1,7 @@
 // 1.Рассширить форму поиска
 import FilmCard from '../templates/filmCard.hbs';
 import getRefs from './get-refs';
+import { getGenreString } from './fetchMoviesAPI';
 
 const refs = getRefs();
 
@@ -16,7 +17,7 @@ refs.form.addEventListener('submit', onHandlerInput);
 
 function renderPage(card) {
   refs.films.innerHTML = '';
-  refs.films.insertAdjacentHTML('beforeend', FilmCard(card.results));
+  refs.films.insertAdjacentHTML('beforeend', FilmCard(card));
 }
 
 async function onHandlerInput(e) {
@@ -24,7 +25,9 @@ async function onHandlerInput(e) {
 
   const search = e.currentTarget.elements.query.value;
   const getElements = await getMovie(search);
-  renderPage(getElements);
+  const searchResults = getElements.results;
+  getGenreString(searchResults)
+  renderPage(searchResults);
   refs.form.reset();
 }
 
