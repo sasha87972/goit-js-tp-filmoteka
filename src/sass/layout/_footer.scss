@@ -206,10 +206,6 @@
   }
 }
 
-.social-links__icon {
-  fill: #000;
-}
-
 .lightbox__card {
   position: relative;
   // padding-top: 48px;
@@ -277,10 +273,9 @@
   cursor: pointer;
   border-radius: 50px;
   box-shadow: 0 10px 40px 1px rgb(220 51 24 / 37%);
-  transition: background-image 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: transition background-image 300ms cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 0;
+  transition: background-image 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  // opacity: 0;
 }
 
 .back_to_top:hover {
