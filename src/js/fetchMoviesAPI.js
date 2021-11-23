@@ -127,7 +127,7 @@ fetch(`${TREND_URL}?api_key=${API_KEY}&page=1`)
   });
 
 function insertMovies(object) {
-  refs.list.innerHTML = object;
+  refs.films.innerHTML = object;
 }
 function getGenreString(moviesArr) {
   moviesArr.forEach(movie => {
