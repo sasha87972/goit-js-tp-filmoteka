@@ -99,7 +99,7 @@ const GENRE_URL = `${BASE_URL}/genre/movie/list`;
 let genreArr = [];
 let genresList = [];
 
-  fetch(`${GENRE_URL}?api_key=${API_KEY}`)
+fetch(`${GENRE_URL}?api_key=${API_KEY}`)
   .then(responce => (genreArr = responce.json()))
   .then(genr => {
     genreArr = genr.genres;
@@ -110,7 +110,7 @@ let genresList = [];
     console.log(error);
   });
 
-  fetch(`${TREND_URL}?api_key=${API_KEY}&page=1`)
+fetch(`${TREND_URL}?api_key=${API_KEY}&page=1`)
   .then(responce => {
     return responce.json();
   })
@@ -125,7 +125,6 @@ let genresList = [];
   .catch(error => {
     console.log(error);
   });
-
 
 function insertMovies(object) {
   refs.list.innerHTML = object;
@@ -149,13 +148,15 @@ function getYearString(moviesArr) {
   });
 }
 
-function getDetailInfo(id) {
+function getDetailFilmInfo(id) {
   fetch(`${BASE_URL}/movie/${id}?api_key=${API_KEY}`)
     .then(responce => {
       return responce.json();
     })
     .then(film => {
       getGenreNames(film);
+      const detailFilmInfo = film;
+      localStorage.setItem('currentFilm', JSON.stringify(detailFilmInfo));
       const filmInfo = FilmModalTpl(film);
       refs.filmModalInfo.innerHTML = filmInfo;
     })
@@ -174,5 +175,4 @@ function getGenreNames(film) {
   genresList = [];
 }
 
-export { getDetailInfo };
-
+export { getDetailFilmInfo };
