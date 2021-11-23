@@ -7,15 +7,19 @@ export default class GetMovies {
 
     const BASE_URL = 'https://api.themoviedb.org/3';
     this.SEARCH_URL = `${BASE_URL}/search/movie`;
-    const GENRE_URL = `${BASE_URL}/genre/movie/list`;
-    const ID_URL = `${BASE_URL}/movie/`;
-    const TREND_URL = `${BASE_URL}/trending/movie/week`;
+    this.GENRE_URL = `${BASE_URL}/genre/movie/list`;
+    this.ID_URL = `${BASE_URL}/movie/`;
+    this.TREND_URL = `${BASE_URL}/trending/movie/week`;
   }
 
   async searchMovies(query) {
     return fetch(`${this.SEARCH_URL}?api_key=${this.key}&query=${query}`).then(response =>
       response.json(),
     );
+  }
+
+  async genreMovies() {
+    return fetch(`${this.GENRE_URL}`).then(resp => resp.json());
   }
 
   // get querySearch() {
