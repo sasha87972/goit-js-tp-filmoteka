@@ -1,37 +1,90 @@
-import { getDetailInfo } from './fetchMoviesAPI';
+import { getDetailFilmInfo } from './fetchMoviesAPI';
+import { onWatchedLib, onQueueLib } from './storage';
 import getRefs from './get-refs';
 
 const refs = getRefs();
-let filmId = null;
+const data = {
+  refs,
+  getDetailFilmInfo,
+  onWatchedLib,
+  onQueueLib,
+};
 
-refs.films.addEventListener('click', onModalOpen);
-refs.backdrop.addEventListener('click', onBackDropClick);
-
-function onModalOpen(e) {
-  e.preventDefault();
-  if (e.target.nodeName === 'UL') {
-    return;
+export default class OnModalEvents {
+  constructor(data) {
+    this.refs = refs;
+    this.getDetailFilmInfo = getDetailFilmInfo;
+    this.onWatchedLib = onWatchedLib;
+    this.onQueueLib = onQueueLib;
   }
-  filmId = e.target.parentNode.parentNode.getAttribute('id');
-  getDetailInfo(filmId);
-  refs.body.classList.add('modal-open');
-  refs.filmModal.classList.add('is-open');
-  refs.closeModalBtn.addEventListener('click', onModalClose);
-  window.addEventListener('keydown', onKeyPress);
-}
-function onModalClose(e) {
+  q = null;
+  w = null;
+
+  loadEventListener = () => {
+    this.refs.list.addEventListener('click', this.onModalOpen);
+    this.refs.backdrop.addEventListener('click', this.onBackDropClick);
+  };
   filmId = null;
-  refs.filmModalInfo.innerHTML = '';
-  refs.body.classList.remove('modal-open');
-  refs.filmModal.classList.remove('is-open');
-}
-function onKeyPress(e) {
-  if (e.code === 'Escape') {
-    onModalClose();
+  onModalOpen = e => {
+    e.preventDefault();
+    if (e.target.nodeName === 'UL') {
+      return;
+    }
+    this.filmId = e.target.parentNode.parentNode.getAttribute('id');
+    this.currentFilm();
+    this.refs.body.classList.add('modal-open');
+    this.refs.filmModal.classList.add('is-open');
+    this.onModalLoadEventListener();
+  };
+  currentFilm = () => {
+    this.getDetailFilmInfo(this.filmId);
+  };
+  onModalLoadEventListener = () => {
+    this.refs.closeModalBtn.addEventListener('click', this.onModalClose);
+    window.addEventListener('keydown', this.onKeyPress);
+    this.loadStorageBtnListener();
+  };
+  loadStorageBtnListener = () => {
+    this.delay(500)
+      .then(() => {
+        const w = document.querySelector('.modalBtn__item--watchedBtn');
+        w.addEventListener('click', this.onWatchedLib);
+      })
+      .then(() => {
+        const q = document.querySelector('.modalBtn__item--queueBtn');
+        q.addEventListener('click', this.onQueueLib);
+      });
+  };
+  delay(ms) {
+    return new Promise((resolve, reject) => {
+      setTimeout(resolve, ms);
+    });
   }
+  onModalRemoveEventListener = () => {
+    window.removeEventListener('keydown', this.onKeyPress);
+  };
+  onModalClose = e => {
+    this.onModalRemoveEventListener();
+    this.filmId = null;
+    this.refs.filmModalInfo.innerHTML = '';
+    this.refs.body.classList.remove('modal-open');
+    this.refs.filmModal.classList.remove('is-open');
+    localStorage.removeItem('currentFilm');
+  };
+  onKeyPress = e => {
+    if (e.code === 'Escape') {
+      this.onModalClose();
+    }
+  };
+  onBackDropClick = e => {
+    if (e.currentTarget === e.target) {
+      this.onModalClose();
+    }
+  };
+  init = () => {
+    this.loadEventListener();
+  };
 }
-function onBackDropClick(e) {
-  if (e.currentTarget === e.target) {
-    onModalClose();
-  }
-}
+
+const modal = new OnModalEvents(data);
+modal.init();

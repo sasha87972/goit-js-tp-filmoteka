@@ -197,7 +197,8 @@
   color: $blackTextColor;
   background: $whiteTextColor;
   &:focus,
-  &:hover {
+  &:hover,
+  .cheked {
     border: none;
     background: $accentColor;
     color: $whiteTextColor;
