@@ -175,4 +175,4 @@ function getGenreNames(film) {
   genresList = [];
 }
 
-export { getDetailFilmInfo, getGenreString };
+export { getDetailFilmInfo, getGenreString, getYearString };
