@@ -21,7 +21,7 @@ export default class OnModalEvents {
   w = null;
 
   loadEventListener = () => {
-    this.refs.list.addEventListener('click', this.onModalOpen);
+    this.refs.films.addEventListener('click', this.onModalOpen);
     this.refs.backdrop.addEventListener('click', this.onBackDropClick);
   };
   filmId = null;

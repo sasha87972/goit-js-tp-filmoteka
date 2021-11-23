@@ -51,14 +51,14 @@ function generateLib(e) {
     console.log(watchedLib);
     const watchedFilmLib = FilmCard(watchedLib);
     console.log();
-    refs.list.innerHTML = watchedFilmLib;
+    refs.films.innerHTML = watchedFilmLib;
   }
   if (e.target.id === 'queue') {
     let queueLib = JSON.parse(localStorage.getItem('filmQueue'));
     console.log(queueLib);
     const queueFilmLib = FilmCard(queueLib);
     console.log();
-    refs.list.innerHTML = queueFilmLib;
+    refs.films.innerHTML = queueFilmLib;
   }
 }
 
