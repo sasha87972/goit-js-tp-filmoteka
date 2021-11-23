@@ -19,8 +19,7 @@ export default class GetMovies {
 
   async genreMovies() {
     const response = await fetch(`${this.GENRE_URL}?api_key=${this.key}`);
-    const newMoviesCard = await response.json();
-    return newMoviesCard;
+    return await response.json();
   }
 
   get querySearch() {
