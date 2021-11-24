@@ -160,6 +160,14 @@
     width: 336px;
   }
 }
+.search__inner {
+  border-bottom: 0.5px solid $whiteTextColor;
+  margin-top: 38px;
+  margin-bottom: 97px;
+}
+::placeholder {
+  color: $whiteTextColor;
+}
 .search__btn {
   background: none;
   padding: 0;
