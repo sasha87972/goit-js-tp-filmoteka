@@ -4,6 +4,7 @@ import FilmCard from '../templates/filmCard.hbs';
 const refs = getRefs();
 const watchedBtn = document.querySelector('.modalBtn__item--watchedBtn');
 const queueBtn = document.querySelector('.modalBtn__item--queueBtn');
+localStorage.clear();
 
 let watched = JSON.parse(localStorage.getItem('filmWatched'));
 let queue = JSON.parse(localStorage.getItem('filmQueue'));
