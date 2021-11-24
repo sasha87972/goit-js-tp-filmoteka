@@ -1,7 +1,7 @@
 // console.log('hello world')
 import FilmCard from '../templates/filmCard.hbs';
 import FilmModalTpl from '../templates/filmModal.hbs';
-
+import showErrorMsg from './search_query';
 import getRefs from './get-refs';
 
 const refs = getRefs();
@@ -109,8 +109,8 @@ fetch(`${GENRE_URL}?api_key=${API_KEY}`)
   .catch(error => {
     console.log(error);
   });
-
-fetch(`${TREND_URL}?api_key=${API_KEY}&page=1`)
+function getTrendMovies() {
+  fetch(`${TREND_URL}?api_key=${API_KEY}&page=1`)
   .then(responce => {
     return responce.json();
   })
@@ -125,12 +125,15 @@ fetch(`${TREND_URL}?api_key=${API_KEY}&page=1`)
   .catch(error => {
     console.log(error);
   });
-
+}
 function insertMovies(object) {
   refs.films.innerHTML = object;
 }
 function getGenreString(moviesArr) {
-  moviesArr.forEach(movie => {
+  if (!moviesArr) {
+    showErrorMsg();
+  } else {
+      moviesArr.forEach(movie => {
     movie.genre_ids.forEach(genId => {
       const genreItem = genreArr.find(i => i.id === genId);
       genId = genreItem.name;
@@ -140,12 +143,18 @@ function getGenreString(moviesArr) {
     movie.genre_string = genreOutput.join(', ');
     genresList = [];
   });
+  }
+
 }
 function getYearString(moviesArr) {
-  moviesArr.forEach(movie => {
-    movie.release_date = new Date(movie.release_date).getFullYear();
-    return movie.release_date;
-  });
+  if (!moviesArr) {
+    showErrorMsg();
+  } else {
+    moviesArr.forEach(movie => {
+      movie.release_date = new Date(movie.release_date).getFullYear();
+      return movie.release_date;
+    })
+  };
 }
 
 function getDetailFilmInfo(id) {
@@ -174,5 +183,6 @@ function getGenreNames(film) {
   film.genre_string = genreOutput.join(', ');
   genresList = [];
 }
+getTrendMovies();
 
-export { getDetailFilmInfo, getGenreString, getYearString };
+export { getDetailFilmInfo, getGenreString, getYearString, getTrendMovies };

@@ -139,13 +139,9 @@
   border: none;
 }
 .search__form {
+  position: relative;
   display: flex;
   justify-content: center;
-}
-.search__inner {
-  border-bottom: 0.5px solid $whiteTextColor;
-  margin-top: 38px;
-  margin-bottom: 97px;
 }
 .search__input {
   margin-bottom: 97px;
@@ -175,4 +171,16 @@
   border-left: none;
   border-right: none;
   border-bottom: 1px solid $whiteTextColor;
+}
+.search__text {
+  position: absolute;
+  bottom: 59px;
+  font-family: $primaryFont;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  color: #ff001b;
+  @media screen and(max-width:767px) {
+    text-align: left;
+  }
 }

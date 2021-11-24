@@ -1,18 +1,9 @@
 import { generateLib } from './storage';
 import FilmCard from '../templates/filmCard.hbs';
+import { getTrendMovies } from './fetchMoviesAPI';
+import getRefs from './get-refs';
 
-const refs = {
-  header: document.querySelector('header'),
-  logo: document.querySelector('.nav__head'),
-  homeBtn: document.querySelector('#home'),
-  libraryBtn: document.querySelector('#library'),
-  library: document.querySelector('.js-film__list'),
-  searchForm: document.querySelector('.search__form'),
-  searchInput: document.querySelector('.search__input'),
-  libraryControls: document.querySelector('.btn'),
-  watchedBtn: document.querySelector('#watched'),
-  queueBtn: document.querySelector('#queue'),
-};
+const refs = getRefs();
 
 refs.libraryBtn.addEventListener('click', switchToLib);
 refs.logo.addEventListener('click', switchToHome);
@@ -26,6 +17,7 @@ function switchToHome() {
   refs.searchForm.classList.remove('visually-hidden');
   refs.libraryControls.classList.add('visually-hidden');
   refs.logo.classList.add('header--home');
+  getTrendMovies();
 }
 
 function switchToLib() {
