@@ -1,5 +1,6 @@
 @import '../utils/variables';
 .header--library {
+  background-size: cover;
   color: $whiteTextColor;
   @media screen and(max-width:767px) {
     background-image: url('/images/header-fav-320.jpg');
@@ -12,6 +13,7 @@
   }
 }
 .header--home {
+  background-size: cover;
   color: $whiteTextColor;
   @media screen and(max-width:767px) {
     background-image: url('/images/header-320.jpg');
@@ -47,14 +49,18 @@
   display: flex;
   justify-content: end;
   text-transform: uppercase;
-
 }
 .nav__item {
   display: flex;
   padding-top: 58px;
   &:not(:first-child) {
     margin-left: 39px;
-}
+  }
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    color: $whiteTextHover;
+  }
 }
 .nav__item--curent {
   position: relative;
@@ -70,14 +76,16 @@
     position: absolute;
   }
 }
-.nav__head{
+.nav__head {
   position: absolute;
+  cursor: pointer;
+  background: none;
   @media screen and(max-width:767px) {
-   // display: none;
+    // display: none;
     top: 46px;
   }
-  @media screen and(min-width:768px){
-    top:41px;
+  @media screen and(min-width:768px) {
+    top: 41px;
     left: 105px;
     font-weight: 500;
     font-family: $primaryFont;
@@ -85,15 +93,15 @@
     font-size: 30px;
     line-height: 1.16;
   }
-  &::before{
+  &::before {
     content: url('/images/icons/favicone.svg');
     width: 24px;
     height: 24px;
-    fill:#818181;
+    fill: #818181;
     padding-right: 10px;
   }
 }
-.nav__head--text{
+.nav__head--text {
   @media screen and(max-width:767px) {
     display: none;
   }
@@ -101,12 +109,11 @@
 .btn {
   display: flex;
   justify-content: center;
-  padding-top: 37px;
-  padding-bottom: 65px;
+  padding-top: 40px;
+  padding-bottom: 80px;
   text-transform: uppercase;
-
 }
-.heder__btn {
+.header__btn {
   height: 44px;
   width: 130px;
   padding: auto;
@@ -116,29 +123,40 @@
   border: 1px solid $whiteTextColor;
   box-sizing: border-box;
   border-radius: $borderRadius;
+  &:hover,
+  &:focus {
+    background-color: $accentColorHover;
+  }
   &:not(:last-child) {
-  margin-right: 15px;
-  @media screen and(max-width:767px) {
-    margin-right: 20px;
+    margin-right: 15px;
+    @media screen and(max-width:767px) {
+      margin-right: 20px;
+    }
   }
 }
-}
-.heder__btn:active {
+.header__btn--current {
   background: #ff6b01;
+  border: none;
 }
 .search__form {
   display: flex;
   justify-content: center;
 }
+.search__inner {
+  border-bottom: 0.5px solid $whiteTextColor;
+  margin-top: 38px;
+  margin-bottom: 97px;
+}
 .search__input {
   margin-bottom: 97px;
   margin-top: 38px;
+  padding: 7px 10px;
   background: none;
   border-top: none;
   border-left: none;
   border-right: none;
   border-bottom: 0.5px solid $whiteTextColor;
-  color: $whiteTextColor;  
+  color: $whiteTextColor;
   @media screen and(max-width:767px) {
     width: 100%;
   }
@@ -146,16 +164,15 @@
     width: 336px;
   }
 }
-.search__btn{
+.search__btn {
   background: none;
   padding: 0;
-  height: 15px;
-  width: 15px;
-  margin-top: 40px;
+  height: 29px;
+  width: 29px;
+  margin-top: 38px;
   border: none;
   border-top: none;
   border-left: none;
   border-right: none;
-  border-bottom: 0.5px solid $whiteTextColor;
-
+  border-bottom: 1px solid $whiteTextColor;
 }

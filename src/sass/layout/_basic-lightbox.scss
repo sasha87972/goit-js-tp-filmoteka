@@ -7,7 +7,6 @@ $basicLightbox__timing: ease !default;
   position: fixed;
   display: flex;
   justify-content: center;
-  align-items: center;
   top: 0;
   left: 0;
   width: 100%;
@@ -32,5 +31,6 @@ $basicLightbox__timing: ease !default;
       align-items: flex-start;
     }
     max-width: 100%;
+    margin-top: 30px;
   }
 }

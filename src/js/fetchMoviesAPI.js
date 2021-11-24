@@ -1,5 +1,10 @@
 // console.log('hello world')
 import FilmCard from '../templates/filmCard.hbs';
+import FilmModalTpl from '../templates/filmModal.hbs';
+
+import getRefs from './get-refs';
+
+const refs = getRefs();
 
 const API_KEY = '0556b87ba267edab76fd3e7e8d7e5097';
 
@@ -8,7 +13,6 @@ const TREND_URL = `${BASE_URL}/trending/movie/week`;
 const SEARCH_URL = `${BASE_URL}/search/movie`;
 const ID_URL = `${BASE_URL}/movie/`;
 const GENRE_URL = `${BASE_URL}/genre/movie/list`;
-
 
 // // fetch(`${ID_URL}3?api_key=${API_KEY}`).then(respons => {
 
@@ -38,17 +42,15 @@ const GENRE_URL = `${BASE_URL}/genre/movie/list`;
 //   return baseFetch(REQUEST_ADRESS);
 // }
 
-
-
 // function baseFetch(REQUEST_ADRESS) {
 //   return fetch(REQUEST_ADRESS)
 //     .then(response => {
 //       // console.log('2',response.json())
 //       return response.json();
 //     }).then(movie =>
-      
+
 //         console.log('object',movie))
-        
+
 // }
 
 // // renderParamsCard(3)
@@ -58,8 +60,6 @@ const GENRE_URL = `${BASE_URL}/genre/movie/list`;
 // getTrend(1)
 
 // // searchMovie('bad boy')
-
-
 
 // OLD VERSION
 
@@ -80,7 +80,6 @@ const GENRE_URL = `${BASE_URL}/genre/movie/list`;
 // function insertMovies(object) {
 //   list.innerHTML = object;
 // }
-  
 
 // fetch(`${GENRE_URL}?api_key=${API_KEY}`)
 //   .then(responce => {
@@ -97,20 +96,19 @@ const GENRE_URL = `${BASE_URL}/genre/movie/list`;
 // MY VERSION
 
 // const list = document.querySelector('main');
-const list = document.querySelector('.film__list');
 let genreArr = [];
 let genresList = [];
 
-  fetch(`${GENRE_URL}?api_key=${API_KEY}`)
-  .then(responce => genreArr = responce.json())
-    .then(genr => {
-      genreArr = genr.genres;
-    console.log(genreArr);
-    return genr.genres
+fetch(`${GENRE_URL}?api_key=${API_KEY}`)
+  .then(responce => (genreArr = responce.json()))
+  .then(genr => {
+    genreArr = genr.genres;
+    // console.log(genreArr);
+    return genr.genres;
   })
   .catch(error => {
     console.log(error);
-  })
+  });
 
 fetch(`${TREND_URL}?api_key=${API_KEY}&page=1`)
   .then(responce => {
@@ -119,16 +117,17 @@ fetch(`${TREND_URL}?api_key=${API_KEY}&page=1`)
   .then(film => {
     const trendMovies = film.results;
     getGenreString(trendMovies);
-    console.log(trendMovies);
+    getYearString(trendMovies);
+    // console.log(trendMovies);
     const films = FilmCard(trendMovies);
     insertMovies(films);
   })
   .catch(error => {
     console.log(error);
-  }) 
+  });
 
 function insertMovies(object) {
-  list.innerHTML = object;
+  refs.films.innerHTML = object;
 }
 function getGenreString(moviesArr) {
   moviesArr.forEach(movie => {
@@ -136,16 +135,44 @@ function getGenreString(moviesArr) {
       const genreItem = genreArr.find(i => i.id === genId);
       genId = genreItem.name;
       genresList.push(genId);
-    })
+    });
     let genreOutput = genresList.slice(0, 3);
     movie.genre_string = genreOutput.join(', ');
     genresList = [];
-  })
+  });
+}
+function getYearString(moviesArr) {
+  moviesArr.forEach(movie => {
+    movie.release_date = new Date(movie.release_date).getFullYear();
+    return movie.release_date;
+  });
 }
 
+function getDetailFilmInfo(id) {
+  fetch(`${BASE_URL}/movie/${id}?api_key=${API_KEY}`)
+    .then(responce => {
+      return responce.json();
+    })
+    .then(film => {
+      getGenreNames(film);
+      const detailFilmInfo = film;
+      localStorage.setItem('currentFilm', JSON.stringify(detailFilmInfo));
+      const filmInfo = FilmModalTpl(film);
+      refs.filmModalInfo.innerHTML = filmInfo;
+    })
+    .catch(error => {
+      console.log(error);
+    });
+}
 
+function getGenreNames(film) {
+  film.genres.forEach(genre => {
+    const genreItem = genre.name;
+    genresList.push(genreItem);
+  });
+  let genreOutput = genresList.slice(0, 3);
+  film.genre_string = genreOutput.join(', ');
+  genresList = [];
+}
 
-
-
-
-
+export { getDetailFilmInfo, getGenreString, getYearString };

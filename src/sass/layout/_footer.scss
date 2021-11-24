@@ -2,6 +2,16 @@
   background: #f7f7f7;
 }
 
+.footer__theme--light {
+  background: #f7f7f7;
+  color: #545454;
+}
+
+.footer__theme--dark {
+  background: #545454;
+  color: #f7f7f7;
+}
+
 .footer__box {
   padding-top: 30px;
   padding-bottom: 30px;
@@ -19,7 +29,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 1.14;
-  color: #545454;
+  // color: #545454;
 
   @media screen and(min-width: 768px) {
     font-size: 16px;
@@ -59,47 +69,71 @@
   }
 }
 
+// Nana's version
+// .footer__icon {
+//   animation: heartbeat 1s infinite;
+//   background-color: #ff6b08;
+//   display: inline-block;
+//   height: 10px;
+//   margin: 0 10px;
+//   transform: rotate(-45deg);
+//   left: 45%;
+//   top: 45%;
+//   width: 10px;
+// }
+
+// .footer__icon:before,
+// .footer__icon:after {
+//   content: '';
+//   background-color: #ff3908;
+//   border-radius: 50%;
+//   height: 10px;
+//   position: absolute;
+//   width: 10px;
+// }
+
+// .footer__icon:before {
+//   top: -5px;
+//   left: 0;
+// }
+
+// .footer__icon:after {
+//   left: 5px;
+//   top: 0;
+// }
+
+// @keyframes heartbeat {
+//   0% {
+//     transform: scale(1) rotate(-45deg);
+//   }
+//   20% {
+//     transform: scale(1.25) rotate(-45deg);
+//   }
+//   40% {
+//     transform: scale(1.5) rotate(-45deg);
+//   }
+// }
+
 .footer__icon {
   animation: heartbeat 1s infinite;
-  background-color: #ff6b08;
+  fill: #ff6b08;
   display: inline-block;
-  height: 10px;
+  height: 15px;
   margin: 0 10px;
-  transform: rotate(-45deg);
   left: 45%;
   top: 45%;
-  width: 10px;
-}
-
-.footer__icon:before,
-.footer__icon:after {
-  content: '';
-  background-color: #ff3908;
-  border-radius: 50%;
-  height: 10px;
-  position: absolute;
-  width: 10px;
-}
-
-.footer__icon:before {
-  top: -5px;
-  left: 0;
-}
-
-.footer__icon:after {
-  left: 5px;
-  top: 0;
+  width: 15px;
 }
 
 @keyframes heartbeat {
   0% {
-    transform: scale(1) rotate(-45deg);
+    transform: scale(1);
   }
   20% {
-    transform: scale(1.25) rotate(-45deg);
+    transform: scale(1.25);
   }
   40% {
-    transform: scale(1.5) rotate(-45deg);
+    transform: scale(1.5);
   }
 }
 
@@ -107,10 +141,13 @@
   @media screen and (min-width: 768px) {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     flex-wrap: wrap;
     margin-top: -25px;
     margin-left: -10px;
+  }
+  @media screen and (min-width: 1024px) {
+    justify-content: center;
   }
 }
 
@@ -124,9 +161,12 @@
   border-radius: 0px 0px 5px 5px;
 
   @media screen and (min-width: 768px) {
-    width: 30%;
+    // width: 30%;
     height: 270px;
     margin-left: 20px;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 30%;
   }
 }
 
@@ -166,15 +206,10 @@
   }
 }
 
-.social-links__icon {
-  fill: #000;
-}
-
 .lightbox__card {
   position: relative;
-  width: 280px;
-  padding-top: 48px;
-  padding-bottom: 40px;
+  // padding-top: 48px;
+  // padding-bottom: 40px;
   padding-left: 20px;
   padding-right: 20px;
   background-color: #fff;
@@ -238,10 +273,9 @@
   cursor: pointer;
   border-radius: 50px;
   box-shadow: 0 10px 40px 1px rgb(220 51 24 / 37%);
-  transition: background-image 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: transition background-image 300ms cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 0;
+  transition: background-image 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  // opacity: 0;
 }
 
 .back_to_top:hover {
