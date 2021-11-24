@@ -1,8 +1,9 @@
 export default class GetMovies {
-  constructor(genre, type) {
+  constructor() {
+    this.container;
     this.query;
-    this.genre = genre;
-    this.type = type;
+    this.genre;
+    this.type;
     this.key = '0556b87ba267edab76fd3e7e8d7e5097';
 
     const BASE_URL = 'https://api.themoviedb.org/3';
@@ -22,11 +23,27 @@ export default class GetMovies {
     return await response.json();
   }
 
+  async getTrend() {
+    const response = await fetch(`${this.TREND_URL}?api_key=${this.key}`);
+    return await response.json();
+  }
+
+  renderMoviesList(template, moviesItem) {
+    const creatList = template(moviesItem);
+    this.container.insertAdjacentHTML('beforeend', creatList);
+  }
+
   get querySearch() {
     return this.query;
   }
-
   set querySearch(query) {
     this.query = query;
   }
+
+  // get container() {
+  //   return this.container;
+  // }
+  // set container(container) {
+  //   this.container = container;
+  // }
 }

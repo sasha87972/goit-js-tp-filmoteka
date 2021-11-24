@@ -6,21 +6,16 @@ import itemList from '../templates/itemGenre.hbs';
 const API = new MovieService();
 const refs = getRefs();
 
-async function renderMenuGenre() {
-  const genre = await API.genreMovies();
+(async function renderMenuGenre() {
+  try {
+    const genre = await API.genreMovies();
+    await renderGenreList(genre);
+  } catch (error) {
+    console.log(error);
+  }
+})();
 
-  await element(genre);
-  const value = await Object.values(genre);
-  //   console.log(value);
-  //   await value.map(i => console.log('obj', i));
-  //   await genre.forEach(i => console.log(i));
-}
-
-async function element({ genres }) {
-  console.log(genres);
-  const item = genres.map(i => itemList({ i }));
+async function renderGenreList({ genres }) {
+  const item = genres.map(item => itemList({ item }));
   refs.genre.insertAdjacentHTML('beforeend', item.join(''));
-  //   list.map(i => console.log({ genres }));
 }
-
-renderMenuGenre();
