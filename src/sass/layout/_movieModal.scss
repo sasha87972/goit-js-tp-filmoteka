@@ -200,6 +200,7 @@
   border: 1px solid $blackTextColor;
   color: $blackTextColor;
   background: $whiteTextColor;
+  transition: color $primaryTransition, background $primaryTransition;
   &:focus,
   &:hover,
   .cheked {
@@ -229,6 +230,7 @@
     stroke: currentColor;
     fill: currentColor;
   }
+  transition: color $primaryTransition;
   &:hover,
   &:focus {
     color: $accentColor;
