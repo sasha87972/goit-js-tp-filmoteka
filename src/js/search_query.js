@@ -1,7 +1,7 @@
 // 1.Рассширить форму поиска
 import FilmCard from '../templates/filmCard.hbs';
 import getRefs from './get-refs';
-import { getGenreString, getYearString } from './fetchMoviesAPI';
+import { getGenreString, getYearString, getImages } from './fetchMoviesAPI';
 
 const refs = getRefs();
 
@@ -33,7 +33,9 @@ async function onHandlerInput(e) {
   console.log(searchResults);
   getGenreString(searchResults);
   getYearString(searchResults);
+  getImages(searchResults);
   renderPage(searchResults);
+  console.log(searchResults);
   refs.form.reset();
 }
 function getMovie(query) {
