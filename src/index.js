@@ -12,5 +12,8 @@ import './js/header';
 import './js/storage';
 
 import './js/getFetch';
+
 import './js/search_query';
+
 import './js/genre';
+import './js/genre-search';

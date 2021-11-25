@@ -1,5 +1,6 @@
 export default class GetMovies {
   constructor() {
+    this.page = 0;
     this.container;
     this.query;
     this.genre;
@@ -9,6 +10,7 @@ export default class GetMovies {
     const BASE_URL = 'https://api.themoviedb.org/3';
     this.SEARCH_URL = `${BASE_URL}/search/movie`;
     this.GENRE_URL = `${BASE_URL}/genre/movie/list`;
+    this.TV_URL = `${BASE_URL}/genre/tv/list`;
     this.ID_URL = `${BASE_URL}/movie/`;
     this.TREND_URL = `${BASE_URL}/trending/movie/week`;
   }
@@ -26,6 +28,10 @@ export default class GetMovies {
   async getTrend() {
     const response = await fetch(`${this.TREND_URL}?api_key=${this.key}`);
     return await response.json();
+  }
+
+  nexPage() {
+    this.page += 1;
   }
 
   renderMoviesList(template, moviesItem) {

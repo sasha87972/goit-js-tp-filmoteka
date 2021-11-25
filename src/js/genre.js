@@ -1,6 +1,5 @@
 import MovieService from './getFetch';
 import getRefs from './get-refs';
-import FilmCard from '../templates/filmCard.hbs';
 import itemList from '../templates/itemGenre.hbs';
 
 const API = new MovieService();
