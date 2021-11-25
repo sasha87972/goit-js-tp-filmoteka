@@ -18,6 +18,4 @@ refs.genre.addEventListener('click', async e => {
 async function renderElements(list, currentGenre) {
   console.log(list);
   console.log(currentGenre);
-  const genre = await list.filter(item => item.genre_ids.includes(currentGenre));
-  console.log(genre);
 }
