@@ -1,18 +1,15 @@
 export default class GetMovies {
   constructor() {
     this.page = 0;
-    this.container;
-    this.query;
-    this.genre;
-    this.type;
+
     this.key = '0556b87ba267edab76fd3e7e8d7e5097';
 
-    const BASE_URL = 'https://api.themoviedb.org/3';
-    this.SEARCH_URL = `${BASE_URL}/search/movie`;
-    this.GENRE_URL = `${BASE_URL}/genre/movie/list`;
-    this.TV_URL = `${BASE_URL}/genre/tv/list`;
-    this.ID_URL = `${BASE_URL}/movie/`;
-    this.TREND_URL = `${BASE_URL}/trending/movie/week`;
+    this.BASE_URL = 'https://api.themoviedb.org/3';
+    this.SEARCH_URL = `${this.BASE_URL}/search/movie`;
+    this.GENRE_URL = `${this.BASE_URL}/genre/movie/list`;
+    this.TV_URL = `${this.BASE_URL}/genre/tv/list`;
+    this.ID_URL = `${this.BASE_URL}/movie/`;
+    this.TREND_URL = `${this.BASE_URL}/trending/movie/week`;
   }
 
   async searchMovies(query) {
@@ -38,18 +35,4 @@ export default class GetMovies {
     const creatList = template(moviesItem);
     this.container.insertAdjacentHTML('beforeend', creatList);
   }
-
-  // get querySearch() {
-  //   return this.query;
-  // }
-  // set querySearch(query) {
-  //   this.query = query;
-  // }
-
-  // get container() {
-  //   return this.container;
-  // }
-  // set container(container) {
-  //   this.container = container;
-  // }
 }
