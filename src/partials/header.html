@@ -13,7 +13,16 @@
 
                 </nav>
             </div>
-      
+
+            <form class="header__container search__form" id="js-search__form">
+                <input type="text" name="query" autocomplete="off" class="search__input" placeholder="Поиск фильмов" />
+
+                <button type="submit" class="search__btn">
+                    <svg class="search__icon" height="15" width="15">
+                    <use href="/images/icons/sprite.svg#icon-search"></use></svg>
+                </button>
+                <p class="search__text"></p>
+            </form>
 
             <!-- Переключатель темы -->
             <div class="toolbar">
@@ -35,17 +44,7 @@
                     </svg>
                 </div>
             </div>
-
-         
-            <form class="header__container search__form" id="js-search__form">
-                <input type="text" name="query" autocomplete="off" class="search__input" placeholder="Поиск фильмов" />
-
-                <button type="submit" class="search__btn">
-                    <svg class="search__icon" height="15" width="15">
-                    <use href="/images/icons/sprite.svg#icon-search"></use></svg>
-                </button>
-                <p class="search__text"></p>
-            </form>
+            
             <div class="header__container btn visually-hidden">
                 <button id="watched" class="header__btn header__btn--current">watched</button>
                 <button id="queue" class="header__btn">queue</button>
