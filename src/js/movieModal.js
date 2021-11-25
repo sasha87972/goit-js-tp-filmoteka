@@ -35,6 +35,9 @@ export default class OnModalEvents {
     this.refs.body.classList.add('modal-open');
     this.refs.filmModal.classList.add('is-open');
     this.onModalLoadEventListener();
+    if (refs.goTopBtn.classList.contains('back_to_top-show')) {
+      refs.goTopBtn.classList.remove('back_to_top-show');
+    }
   };
   currentFilm = () => {
     this.getDetailFilmInfo(this.filmId);
@@ -70,6 +73,10 @@ export default class OnModalEvents {
     this.refs.body.classList.remove('modal-open');
     this.refs.filmModal.classList.remove('is-open');
     localStorage.removeItem('currentFilm');
+    let scrolled = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrolled > 100) {
+      refs.goTopBtn.classList.add('back_to_top-show');
+    }
   };
   onKeyPress = e => {
     if (e.code === 'Escape') {
