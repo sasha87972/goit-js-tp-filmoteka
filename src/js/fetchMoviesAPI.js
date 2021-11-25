@@ -2,6 +2,8 @@
 import FilmCard from '../templates/filmCard.hbs';
 import FilmModalTpl from '../templates/filmModal.hbs';
 import showErrorMsg from './search_query';
+import errorUrl from '../images/no-poster.jpg';
+
 import getRefs from './get-refs';
 
 const refs = getRefs();
@@ -111,20 +113,21 @@ fetch(`${GENRE_URL}?api_key=${API_KEY}`)
   });
 function getTrendMovies() {
   fetch(`${TREND_URL}?api_key=${API_KEY}&page=1`)
-  .then(responce => {
-    return responce.json();
-  })
-  .then(film => {
-    const trendMovies = film.results;
-    getGenreString(trendMovies);
-    getYearString(trendMovies);
-    // console.log(trendMovies);
-    const films = FilmCard(trendMovies);
-    insertMovies(films);
-  })
-  .catch(error => {
-    console.log(error);
-  });
+    .then(responce => {
+      return responce.json();
+    })
+    .then(film => {
+      const trendMovies = film.results;
+      getGenreString(trendMovies);
+      getYearString(trendMovies);
+      getImages(trendMovies);
+      // console.log(trendMovies);
+      const films = FilmCard(trendMovies);
+      insertMovies(films);
+    })
+    .catch(error => {
+      console.log(error);
+    });
 }
 function insertMovies(object) {
   refs.films.innerHTML = object;
@@ -133,28 +136,42 @@ function getGenreString(moviesArr) {
   if (!moviesArr) {
     showErrorMsg();
   } else {
-      moviesArr.forEach(movie => {
-    movie.genre_ids.forEach(genId => {
-      const genreItem = genreArr.find(i => i.id === genId);
-      genId = genreItem.name;
-      genresList.push(genId);
+    moviesArr.forEach(movie => {
+      movie.genre_ids.forEach(genId => {
+        const genreItem = genreArr.find(i => i.id === genId);
+        genId = genreItem.name;
+        genresList.push(genId);
+      });
+      let genreOutput = genresList.slice(0, 3);
+      movie.genre_string = genreOutput.join(', ');
+      genresList = [];
     });
-    let genreOutput = genresList.slice(0, 3);
-    movie.genre_string = genreOutput.join(', ');
-    genresList = [];
-  });
   }
-
 }
 function getYearString(moviesArr) {
   if (!moviesArr) {
     showErrorMsg();
   } else {
     moviesArr.forEach(movie => {
-      movie.release_date = new Date(movie.release_date).getFullYear();
-      return movie.release_date;
-    })
-  };
+      if (!isNaN(movie.release_date)) {
+        movie.release_date = '';
+      } else {
+        movie.release_date = new Date(movie.release_date).getFullYear();
+        return movie.release_date;
+      }
+    });
+  }
+}
+function getImages(moviesArr) {
+  moviesArr.forEach(movie => {
+    if (movie.poster_path === null) {
+      let poster = `${errorUrl}`;
+      movie.poster_path = poster;
+    } else {
+      let poster = `https://www.themoviedb.org/t/p/w500${movie.poster_path}`;
+      movie.poster_path = poster;
+    }
+  });
 }
 
 function getDetailFilmInfo(id) {
@@ -164,6 +181,7 @@ function getDetailFilmInfo(id) {
     })
     .then(film => {
       getGenreNames(film);
+      getImage(film);
       const detailFilmInfo = film;
       localStorage.setItem('currentFilm', JSON.stringify(detailFilmInfo));
       const filmInfo = FilmModalTpl(film);
@@ -183,6 +201,15 @@ function getGenreNames(film) {
   film.genre_string = genreOutput.join(', ');
   genresList = [];
 }
+function getImage(film) {
+  if (film.poster_path === null) {
+    let poster = `${errorUrl}`;
+    film.poster_path = poster;
+  } else {
+    let poster = `https://www.themoviedb.org/t/p/w500${film.poster_path}`;
+    film.poster_path = poster;
+  }
+}
 getTrendMovies();
 
-export { getDetailFilmInfo, getGenreString, getYearString, getTrendMovies };
+export { getDetailFilmInfo, getGenreString, getYearString, getTrendMovies, getImages };
