@@ -26,7 +26,7 @@ export default class GetMovies {
   }
 
   async getTrend() {
-    const response = await fetch(`${this.TREND_URL}?api_key=${this.key}`);
+    const response = await fetch(`${this.TREND_URL}?api_key=${this.key}&page=1`);
     return await response.json();
   }
 

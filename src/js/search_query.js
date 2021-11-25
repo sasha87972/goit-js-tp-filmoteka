@@ -19,6 +19,7 @@ refs.form.addEventListener('submit', async e => {
 });
 
 function renderPage(card) {
+  console.log(card);
   refs.films.innerHTML = '';
   refs.films.insertAdjacentHTML('beforeend', FilmCard(card.results));
 }
