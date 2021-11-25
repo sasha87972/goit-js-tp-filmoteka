@@ -5,9 +5,6 @@ import getRefs from './get-refs';
 
 const refs = getRefs();
 
-console.log(refs.queueBtn);
-console.log(refs.watchedBtn);
-
 refs.libraryBtn.addEventListener('click', switchToLib);
 refs.logo.addEventListener('click', switchToHome);
 refs.homeBtn.addEventListener('click', switchToHome);
@@ -35,7 +32,7 @@ function switchToLib() {
 
   refs.libraryControls.addEventListener('click', generateLib);
   
-  console.log(generateLib())
+  // console.log(generateLib())
   
   openWatched();
   // openQueue();
@@ -60,13 +57,15 @@ function switchToLib() {
 }
 
 function openWatched() {
-console.log('click on watched')
-
+// console.log('click on watched')
+  refs.watchedBtn.classList.add('header__btn--current');
+  refs.queueBtn.classList.remove('header__btn--current');
+  
     let wLib = JSON.parse(localStorage.getItem('filmWatched'));
     renderLib(wLib);
 
   let lib = [...renderLib(wLib)];
-  console.log('lib', lib);
+  // console.log('lib', lib);
   if (lib.length === 0) {
     console.log('is empty')
   }
@@ -75,12 +74,16 @@ console.log('click on watched')
 }
 
 function openQueue() {
-  console.log('click on queue')
+  // console.log('click on queue')
+  
+  refs.queueBtn.classList.add('header__btn--current');
+  refs.watchedBtn.classList.remove('header__btn--current');
+
   let qLib = JSON.parse(localStorage.getItem('filmQueue'));
   renderLib(qLib);
 
   let lib = [...renderLib(qLib)];
-  console.log('lib', lib);
+  // console.log('lib', lib);
   if (lib.length === 0) {
     console.log('is empty')
   }
