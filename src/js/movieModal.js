@@ -1,5 +1,5 @@
 import { getDetailFilmInfo } from './fetchMoviesAPI';
-import { onWatchedLib, onQueueLib } from './storage';
+import { onWatchedLib, onQueueLib, onRemove } from './storage';
 import getRefs from './get-refs';
 
 const refs = getRefs();
@@ -8,6 +8,7 @@ const data = {
   getDetailFilmInfo,
   onWatchedLib,
   onQueueLib,
+  onRemove,
 };
 
 export default class OnModalEvents {
@@ -16,6 +17,7 @@ export default class OnModalEvents {
     this.getDetailFilmInfo = getDetailFilmInfo;
     this.onWatchedLib = onWatchedLib;
     this.onQueueLib = onQueueLib;
+    this.onRemove = onRemove;
   }
   q = null;
   w = null;
@@ -51,12 +53,26 @@ export default class OnModalEvents {
     this.delay(500)
       .then(() => {
         const w = document.querySelector('.modalBtn__item--watchedBtn');
+        if (w === null) {
+          return
+        }
         w.addEventListener('click', this.onWatchedLib);
       })
       .then(() => {
         const q = document.querySelector('.modalBtn__item--queueBtn');
+         if (q === null) {
+          return
+        }
         q.addEventListener('click', this.onQueueLib);
-      });
+      })
+      .then(() => {
+        const r = document.querySelector('.modalBtn__item--remove');
+         if (r === null) {
+          return
+        }
+        r.addEventListener('click',this.onRemove)
+    })
+    
   };
   delay(ms) {
     return new Promise((resolve, reject) => {
