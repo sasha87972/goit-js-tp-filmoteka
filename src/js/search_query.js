@@ -25,13 +25,25 @@ async function onHandlerInput(e) {
 
   const search = e.currentTarget.elements.query.value;
   const getElements = await getMovie(search);
+    console.log(getElements);
   const searchResults = getElements.results;
+  if (search === '' || searchResults.length === 0) {
+    showErrorMsg();
+  }
+  console.log(searchResults);
   getGenreString(searchResults);
   getYearString(searchResults);
   renderPage(searchResults);
   refs.form.reset();
 }
-
 function getMovie(query) {
-  return fetch(`${SEARCH_URL}?api_key=${API_KEY}&query=${query}`).then(resp => resp.json());
+    return fetch(`${SEARCH_URL}?api_key=${API_KEY}&query=${query}`).then(resp => resp.json()).catch(e => console.log(e));
 }
+export default function showErrorMsg() {
+    refs.errorMsg.textContent = "Search result not successful. Enter the correct movie name!";
+    setTimeout(clearErrorMsg, 5000);
+}
+function clearErrorMsg() {
+  refs.errorMsg.textContent = " ";
+}
+
