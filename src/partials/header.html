@@ -1,55 +1,57 @@
 <header class="header--home ">
-    <div class="container"> 
-    <div class="header__container">
-        <nav class="nav">
-            <p class="nav__head" >
-                <span class="nav__head--text">Filmoteka</span>
-            </p>
-                    <ul class="nav__list">
-                        <li class="nav__item nav__item--curent" id="home">home</li>
-                        <li class="nav__item" id="library">my library
-                        </li>
-                    </ul>
+    <div class="container">
+        <div class="header__container">
+            <nav class="nav">
+                <p class="nav__head">
+                    <span class="nav__head--text">Filmoteka</span>
+                </p>
+                <ul class="nav__list">
+                    <li class="nav__item nav__item--curent" id="home">home</li>
+                    <li class="nav__item" id="library">my library
+                    </li>
+                </ul>
 
-                </nav>
-            </div>
+            </nav>
+        </div>
 
-            <form class="header__container search__form" id="js-search__form">
-                <input type="text" name="query" autocomplete="off" class="search__input" placeholder="Поиск фильмов" />
+        <form class="header__container search__form" id="js-search__form">
+            <input type="text" name="query" autocomplete="off" class="search__input" placeholder="Поиск фильмов" />
 
-                <button type="submit" class="search__btn">
-                    <svg class="search__icon" height="15" width="15">
-                    <use href="/images/icons/sprite.svg#icon-search"></use></svg>
-                </button>
-                <p class="search__text"></p>
-            </form>
+            <button type="submit" class="search__btn">
+                <svg class="search__icon" height="15" width="15">
+                    <use href="/images/icons/sprite.svg#icon-search"></use>
+                </svg>
+            </button>
+            <p class="search__text"></p>
+        </form>
 
-            <!-- Переключатель темы -->
-            <div class="toolbar">
-                <div class="theme-switch">
-                    <svg class="theme-switch__icon" role="img" aria-label="Иконка солнца">
-                        <use href="./images/icons/sprite.svg#sun"></use>
-                    </svg>
-            
-                    <div class="theme-switch__control">
-                        <input class="theme-switch__toggle" type="checkbox" name="theme" id="theme-switch-toggle"
-                            aria-label="Переключить между тёмной и светлой темой" />
-                        <label aria-hidden="true" class="theme-switch__track" for="theme-switch-toggle" aria-label="switch_theme">
-                        </label>
-                        <div aria-hidden="true" class="theme-switch__marker"></div>
-                    </div>
-            
-                    <svg class="theme-switch__icon" aria-label="Иконка луны">
-                        <use href="./images/icons/sprite.svg#moon"></use>
-                    </svg>
+        <!-- Переключатель темы -->
+        <div class="toolbar">
+            <div class="theme-switch">
+                <svg class="theme-switch__icon" role="img" aria-label="Иконка солнца">
+                    <use href="./images/icons/sprite.svg#sun"></use>
+                </svg>
+
+                <div class="theme-switch__control">
+                    <input class="theme-switch__toggle" type="checkbox" name="theme" id="theme-switch-toggle"
+                        aria-label="Переключить между тёмной и светлой темой" />
+                    <label aria-hidden="true" class="theme-switch__track" for="theme-switch-toggle"
+                        aria-label="switch_theme">
+                    </label>
+                    <div aria-hidden="true" class="theme-switch__marker"></div>
                 </div>
-            </div>
-            
-            <div class="header__container btn visually-hidden">
-                <button id="watched" class="header__btn header__btn--current">watched</button>
-                <button id="queue" class="header__btn">queue</button>
+
+                <svg class="theme-switch__icon" aria-label="Иконка луны">
+                    <use href="./images/icons/sprite.svg#moon"></use>
+                </svg>
             </div>
         </div>
+
+        <div class="header__container btn visually-hidden">
+            <button id="watched" class="header__btn">watched</button>
+            <button id="queue" class="header__btn">queue</button>
+        </div>
+    </div>
 
 </header>
 <!-- <header class="header--library ">
@@ -71,4 +73,3 @@
                 <button class="heder__btn">queue</button>
             </div>
         </header>
-
