@@ -16,8 +16,12 @@ if (!watched) {
 if (!queue) {
   queue = [];
 }
+function onRemove() {
+  console.log('remove')
+}
 
 function onWatchedLib() {
+  console.log('click on watched');
   let currentFilm = JSON.parse(localStorage.getItem('currentFilm'));
   let watched = JSON.parse(localStorage.getItem('filmWatched'));
   if (!watched) {
@@ -34,6 +38,7 @@ function onWatchedLib() {
 }
 
 function onQueueLib() {
+  console.log('click on queue');
   let currentFilm = JSON.parse(localStorage.getItem('currentFilm'));
   let queue = JSON.parse(localStorage.getItem('filmQueue'));
   if (!queue) {
@@ -69,4 +74,4 @@ function generateLib(e) {
   // }
 }
 
-export { onWatchedLib, onQueueLib, generateLib };
+export { onRemove,onWatchedLib, onQueueLib, generateLib };
