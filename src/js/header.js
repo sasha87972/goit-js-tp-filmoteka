@@ -19,6 +19,9 @@ function switchToHome() {
   refs.searchForm.classList.remove('visually-hidden');
   refs.libraryControls.classList.add('visually-hidden');
   refs.logo.classList.add('header--home');
+
+  refs.watchedBtn.classList.remove('header__btn--current');
+  refs.queueBtn.classList.remove('header__btn--current');
   getTrendMovies();
 }
 

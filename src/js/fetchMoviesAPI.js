@@ -1,6 +1,9 @@
 // console.log('hello world')
 import FilmCard from '../templates/filmCard.hbs';
 import FilmModalTpl from '../templates/filmModal.hbs';
+import filmModalQueue from '../templates/filmModalQueue';
+import filmModalWatched from '../templates/filmModalWatche';
+
 import showErrorMsg from './search_query';
 import errorUrl from '../images/no-poster.jpg';
 
@@ -184,6 +187,20 @@ function getDetailFilmInfo(id) {
       getImage(film);
       const detailFilmInfo = film;
       localStorage.setItem('currentFilm', JSON.stringify(detailFilmInfo));
+      
+      console.log('watched btn',refs.watchedBtn.classList);
+      console.log('qeue btn', refs.queueBtn.classList);
+      if (refs.watchedBtn.classList.contains('header__btn--current')) {
+          const filmInfo = filmModalQueue(film);
+      refs.filmModalInfo.innerHTML = filmInfo;
+        console.log('current watched')
+        return
+      } else if (refs.queueBtn.classList.contains('header__btn--current')) {
+        const filmInfo = filmModalWatched(film);
+      refs.filmModalInfo.innerHTML = filmInfo;
+        console.log('current queue')
+        return 
+      }
       const filmInfo = FilmModalTpl(film);
       refs.filmModalInfo.innerHTML = filmInfo;
     })
