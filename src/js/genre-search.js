@@ -17,18 +17,20 @@ refs.genre.addEventListener('click', async e => {
 });
 
 async function renderElements(list, currentGenre) {
-  console.log(list);
-  const itemList = await list.filter(i => {
-    const arrID = i.genre_ids;
-    return arrID.find(item => item === Number(currentGenre));
-    // console.log(ID);
-  });
+  try {
+    const itemList = await list.filter(i => {
+      const arrID = i.genre_ids;
+      return arrID.find(item => item === Number(currentGenre));
+    });
 
-  renderPage(itemList);
+    renderPage(itemList);
+  } catch (error) {
+    console.log('Не удалось отобразить фильмы за даным жанром');
+  }
 }
 
 function renderPage(card) {
   console.log(card);
   refs.films.innerHTML = '';
-  refs.films.insertAdjacentHTML('beforeend', FilmCard(card.results));
+  refs.films.insertAdjacentHTML('beforeend', FilmCard(card));
 }

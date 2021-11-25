@@ -15,8 +15,8 @@ export default class GetMovies {
     this.TREND_URL = `${BASE_URL}/trending/movie/week`;
   }
 
-  async searchMovies() {
-    const response = await fetch(`${this.SEARCH_URL}?api_key=${this.key}&query=${this.query}`);
+  async searchMovies(query) {
+    const response = await fetch(`${this.SEARCH_URL}?api_key=${this.key}&query=${query}`);
     return await response.json();
   }
 
@@ -39,12 +39,12 @@ export default class GetMovies {
     this.container.insertAdjacentHTML('beforeend', creatList);
   }
 
-  get querySearch() {
-    return this.query;
-  }
-  set querySearch(query) {
-    this.query = query;
-  }
+  // get querySearch() {
+  //   return this.query;
+  // }
+  // set querySearch(query) {
+  //   this.query = query;
+  // }
 
   // get container() {
   //   return this.container;

@@ -9,13 +9,15 @@ refs.form.addEventListener('submit', async e => {
   e.preventDefault();
 
   const value = e.currentTarget.elements.query.value.trim();
-  if (value === '') return;
-
-  await API.querySearch(value);
-  const getFilmList = await API.searchMovies();
-
-  renderPage(getFilmList);
-  refs.form.reset();
+  try {
+    if (value === '') return;
+    // await API.querySearch(value);
+    const getFilmList = await API.searchMovies(value);
+    renderPage(getFilmList);
+    refs.form.reset();
+  } catch (error) {
+    console.log('Search result not successful. Enter the correct movie name!');
+  }
 });
 
 function renderPage(card) {
