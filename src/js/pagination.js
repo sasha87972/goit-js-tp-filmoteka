@@ -52,4 +52,4 @@ function element(totalPages, page){
     ulTag.innerHTML = liTag;
 
 }
-element(totalPages, 5);
+element(totalPages, 8);
