@@ -1,6 +1,7 @@
 import MovieService from './getFetch';
 import getRefs from './get-refs';
 import FilmCard from '../templates/filmCard.hbs';
+import { getGenreString, getYearString, getImages } from './fetchMoviesAPI';
 
 const API = new MovieService();
 const refs = getRefs();
@@ -9,11 +10,15 @@ refs.form.addEventListener('submit', async e => {
   e.preventDefault();
 
   const value = e.currentTarget.elements.query.value.trim();
-  const getFilmList = await API.searchMovies(value);
 
   try {
     if (value === '') return;
+    API.searchQuery = value;
+    const getFilmList = await API.searchMovies(value);
 
+    // getGenreString(getFilmList);
+    // getYearString(getFilmList);
+    // getImages(getFilmList);
     await renderPage(getFilmList);
     refs.form.reset();
   } catch (error) {
