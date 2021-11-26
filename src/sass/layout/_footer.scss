@@ -12,6 +12,10 @@
   color: #f7f7f7;
 }
 
+.modalIsOpen {
+  pointer-events: none;
+}
+
 .footer__box {
   padding-top: 30px;
   padding-bottom: 30px;

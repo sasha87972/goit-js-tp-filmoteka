@@ -37,6 +37,7 @@ export default class OnModalEvents {
     this.refs.body.classList.add('modal-open');
     this.refs.filmModal.classList.add('is-open');
     this.onModalLoadEventListener();
+    document.querySelector('.footer__box').classList.add('modalIsOpen');
     if (refs.goTopBtn.classList.contains('back_to_top-show')) {
       refs.goTopBtn.classList.remove('back_to_top-show');
     }
@@ -89,9 +90,10 @@ export default class OnModalEvents {
     this.refs.body.classList.remove('modal-open');
     this.refs.filmModal.classList.remove('is-open');
     localStorage.removeItem('currentFilm');
+    document.querySelector('.footer__box').classList.remove('modalIsOpen');
     let scrolled = window.pageYOffset || document.documentElement.scrollTop;
     if (scrolled > 100) {
-      refs.goTopBtn.classList.add('back_to_top-show');
+      refs.goTopBtnclassList.add('back_to_top-show');
     }
   };
   onKeyPress = e => {
