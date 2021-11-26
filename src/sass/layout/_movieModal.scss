@@ -67,6 +67,10 @@
   font-weight: 500;
   background: $whiteTextColor;
   color: $blackTextColor;
+  &.dark-theme {
+    background: #545454;
+    color: #f7f7f7;
+  }
 }
 
 .film-card__poster {
@@ -197,7 +201,8 @@
   color: $blackTextColor;
   background: $whiteTextColor;
   &:focus,
-  &:hover {
+  &:hover,
+  .cheked {
     border: none;
     background: $accentColor;
     color: $whiteTextColor;

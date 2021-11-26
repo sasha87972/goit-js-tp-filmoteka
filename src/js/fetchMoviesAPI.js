@@ -1,6 +1,11 @@
 // console.log('hello world')
 import FilmCard from '../templates/filmCard.hbs';
 import FilmModalTpl from '../templates/filmModal.hbs';
+import filmModalQueue from '../templates/filmModalQueue';
+import filmModalWatched from '../templates/filmModalWatche';
+
+import showErrorMsg from './search_query';
+import errorUrl from '../images/no-poster.jpg';
 
 import getRefs from './get-refs';
 
@@ -99,7 +104,7 @@ const GENRE_URL = `${BASE_URL}/genre/movie/list`;
 let genreArr = [];
 let genresList = [];
 
-  fetch(`${GENRE_URL}?api_key=${API_KEY}`)
+fetch(`${GENRE_URL}?api_key=${API_KEY}`)
   .then(responce => (genreArr = responce.json()))
   .then(genr => {
     genreArr = genr.genres;
@@ -109,53 +114,93 @@ let genresList = [];
   .catch(error => {
     console.log(error);
   });
-
+function getTrendMovies() {
   fetch(`${TREND_URL}?api_key=${API_KEY}&page=1`)
-  .then(responce => {
-    return responce.json();
-  })
-  .then(film => {
-    const trendMovies = film.results;
-    getGenreString(trendMovies);
-    getYearString(trendMovies);
-    // console.log(trendMovies);
-    const films = FilmCard(trendMovies);
-    insertMovies(films);
-  })
-  .catch(error => {
-    console.log(error);
-  });
-
-
+    .then(responce => {
+      return responce.json();
+    })
+    .then(film => {
+      const trendMovies = film.results;
+      getGenreString(trendMovies);
+      getYearString(trendMovies);
+      getImages(trendMovies);
+      // console.log(trendMovies);
+      const films = FilmCard(trendMovies);
+      insertMovies(films);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+}
 function insertMovies(object) {
-  refs.list.innerHTML = object;
+  refs.films.innerHTML = object;
 }
 function getGenreString(moviesArr) {
-  moviesArr.forEach(movie => {
-    movie.genre_ids.forEach(genId => {
-      const genreItem = genreArr.find(i => i.id === genId);
-      genId = genreItem.name;
-      genresList.push(genId);
+  if (!moviesArr) {
+    showErrorMsg();
+  } else {
+    moviesArr.forEach(movie => {
+      movie.genre_ids.forEach(genId => {
+        const genreItem = genreArr.find(i => i.id === genId);
+        genId = genreItem.name;
+        genresList.push(genId);
+      });
+      let genreOutput = genresList.slice(0, 3);
+      movie.genre_string = genreOutput.join(', ');
+      genresList = [];
     });
-    let genreOutput = genresList.slice(0, 3);
-    movie.genre_string = genreOutput.join(', ');
-    genresList = [];
-  });
+  }
 }
 function getYearString(moviesArr) {
+  if (!moviesArr) {
+    showErrorMsg();
+  } else {
+    moviesArr.forEach(movie => {
+      if (!isNaN(movie.release_date)) {
+        movie.release_date = '';
+      } else {
+        movie.release_date = new Date(movie.release_date).getFullYear();
+        return movie.release_date;
+      }
+    });
+  }
+}
+function getImages(moviesArr) {
   moviesArr.forEach(movie => {
-    movie.release_date = new Date(movie.release_date).getFullYear();
-    return movie.release_date;
+    if (movie.poster_path === null) {
+      let poster = `${errorUrl}`;
+      movie.poster_path = poster;
+    } else {
+      let poster = `https://www.themoviedb.org/t/p/w500${movie.poster_path}`;
+      movie.poster_path = poster;
+    }
   });
 }
 
-function getDetailInfo(id) {
+function getDetailFilmInfo(id) {
   fetch(`${BASE_URL}/movie/${id}?api_key=${API_KEY}`)
     .then(responce => {
       return responce.json();
     })
     .then(film => {
       getGenreNames(film);
+      getImage(film);
+      const detailFilmInfo = film;
+      localStorage.setItem('currentFilm', JSON.stringify(detailFilmInfo));
+      
+      console.log('watched btn',refs.watchedBtn.classList);
+      console.log('qeue btn', refs.queueBtn.classList);
+      if (refs.watchedBtn.classList.contains('header__btn--current')) {
+          const filmInfo = filmModalQueue(film);
+      refs.filmModalInfo.innerHTML = filmInfo;
+        console.log('current watched')
+        return
+      } else if (refs.queueBtn.classList.contains('header__btn--current')) {
+        const filmInfo = filmModalWatched(film);
+      refs.filmModalInfo.innerHTML = filmInfo;
+        console.log('current queue')
+        return 
+      }
       const filmInfo = FilmModalTpl(film);
       refs.filmModalInfo.innerHTML = filmInfo;
     })
@@ -173,6 +218,15 @@ function getGenreNames(film) {
   film.genre_string = genreOutput.join(', ');
   genresList = [];
 }
+function getImage(film) {
+  if (film.poster_path === null) {
+    let poster = `${errorUrl}`;
+    film.poster_path = poster;
+  } else {
+    let poster = `https://www.themoviedb.org/t/p/w500${film.poster_path}`;
+    film.poster_path = poster;
+  }
+}
+getTrendMovies();
 
-export { getDetailInfo };
-
+export { getDetailFilmInfo, getGenreString, getYearString, getTrendMovies, getImages };

@@ -83,3 +83,13 @@ body.dark-theme {
 .theme-switch__toggle:checked ~ .theme-switch__marker {
   transform: translateX(10px);
 }
+
+.theme--light {
+  background-color: #fff;
+  color: #333;
+}
+
+.theme--dark {
+  background-color: #333;
+  color: #fff;
+}
