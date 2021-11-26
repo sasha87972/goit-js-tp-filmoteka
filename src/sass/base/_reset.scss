@@ -1,4 +1,5 @@
 html {
+  width: 100vw;
   box-sizing: border-box;
 }
 
@@ -16,6 +17,7 @@ html {
 body {
   font-family: $primaryFont;
   font-family: 'Roboto', sans-serif;
+  overflow-x: hidden;
 }
 
 body.modal-open {
