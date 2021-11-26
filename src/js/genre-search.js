@@ -1,6 +1,5 @@
 import MovieService from './getFetch';
 import getRefs from './get-refs';
-import itemList from '../templates/itemGenre.hbs';
 import FilmCard from '../templates/filmCard.hbs';
 
 const API = new MovieService();
@@ -20,17 +19,18 @@ async function renderElements(list, currentGenre) {
   try {
     const itemList = await list.filter(i => {
       const arrID = i.genre_ids;
-      return arrID.find(item => item === Number(currentGenre));
+      const chooseGenre = arrID.find(item => item === Number(currentGenre));
+
+      return chooseGenre;
     });
 
     renderPage(itemList);
   } catch (error) {
-    console.log('Не удалось отобразить фильмы за даным жанром');
+    console.log(error);
   }
 }
 
 function renderPage(card) {
-  console.log(card);
   refs.films.innerHTML = '';
   refs.films.insertAdjacentHTML('beforeend', FilmCard(card));
 }

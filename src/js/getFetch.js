@@ -2,7 +2,6 @@ export default class GetMovies {
   constructor() {
     this.page = 0;
     this.query = '';
-    this.box;
     this.key = '0556b87ba267edab76fd3e7e8d7e5097';
 
     this.BASE_URL = 'https://api.themoviedb.org/3';

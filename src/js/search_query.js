@@ -3,6 +3,10 @@ import getRefs from './get-refs';
 import FilmCard from '../templates/filmCard.hbs';
 import { getGenreString, getYearString, getImages } from './fetchMoviesAPI';
 
+import '@pnotify/core/dist/BrightTheme.css';
+import '@pnotify/core/dist/PNotify.css';
+const { alert, error } = require('@pnotify/core');
+
 const API = new MovieService();
 const refs = getRefs();
 
@@ -16,18 +20,34 @@ refs.form.addEventListener('submit', async e => {
     API.searchQuery = value;
     const getFilmList = await API.searchMovies(value);
 
-    // getGenreString(getFilmList);
-    // getYearString(getFilmList);
-    // getImages(getFilmList);
+    if (getFilmList.results.length === 0) {
+      return onInfo();
+    }
+
     await renderPage(getFilmList);
     refs.form.reset();
   } catch (error) {
-    console.log('Search result not successful. Enter the correct movie name!');
+    onError();
   }
 });
 
 async function renderPage(card) {
-  console.log(card);
   refs.films.innerHTML = '';
   refs.films.insertAdjacentHTML('beforeend', FilmCard(card.results));
+}
+
+function onError() {
+  return error({
+    text: 'Search result not successful. Enter the correct movie name!',
+    type: 'Error',
+    delay: 1500,
+  });
+}
+
+function onInfo() {
+  return alert({
+    text: 'Sorry, but no such movie was found.',
+    type: 'info',
+    delay: 1500,
+  });
 }
