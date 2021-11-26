@@ -104,8 +104,8 @@ function getDetailFilmInfo(id) {
       const detailFilmInfo = film;
       localStorage.setItem('currentFilm', JSON.stringify(detailFilmInfo));
       
-      console.log('watched btn',refs.watchedBtn.classList);
-      console.log('qeue btn', refs.queueBtn.classList);
+      // console.log('watched btn',refs.watchedBtn.classList);
+      // console.log('qeue btn', refs.queueBtn.classList);
       if (refs.watchedBtn.classList.contains('header__btn--current')) {
           const filmInfo = filmModalQueue(film);
       refs.filmModalInfo.innerHTML = filmInfo;
