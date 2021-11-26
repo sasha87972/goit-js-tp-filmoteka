@@ -9,7 +9,6 @@ export default function getRefs() {
     filmModalInfo: document.querySelector('.film-card'),
     closeModalBtn: document.querySelector('.closeBtn'),
     form: document.getElementById('js-search__form'),
-    genre: document.getElementById('js__genre_menu'),
     //header refs
     header: document.querySelector('header'),
     logo: document.querySelector('.nav__head'),
