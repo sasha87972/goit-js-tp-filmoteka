@@ -19,6 +19,37 @@ const SEARCH_URL = `${BASE_URL}/search/movie`;
 const ID_URL = `${BASE_URL}/movie/`;
 const GENRE_URL = `${BASE_URL}/genre/movie/list`;
 
+let page = 1;
+
+refs.nextBtn.addEventListener('click', loadNext);
+refs.previosBtn.addEventListener('click', loadPrevios);
+
+function setPage() {
+  return page = 1;
+}
+
+function incrementPage() {
+  return page += 1;
+}
+
+function decrementPage() {
+  return page -= 1;
+}
+
+function loadNext() {
+  console.log('page next', page);
+  incrementPage();
+  getTrendMovies(page);
+}
+
+function loadPrevios() {
+  console.log('page Previos', page);
+  if (page <= 1) {
+    return 
+  }
+  decrementPage();
+  getTrendMovies(page);
+}
 // // fetch(`${ID_URL}3?api_key=${API_KEY}`).then(respons => {
 
 // //     // console.log('1',respons.json())
@@ -114,12 +145,14 @@ fetch(`${GENRE_URL}?api_key=${API_KEY}`)
   .catch(error => {
     console.log(error);
   });
+
 function getTrendMovies() {
-  fetch(`${TREND_URL}?api_key=${API_KEY}&page=1`)
+  fetch(`${TREND_URL}?api_key=${API_KEY}&page=${page}`)
     .then(responce => {
       return responce.json();
     })
     .then(film => {
+      console.log('get trend page',page)
       const trendMovies = film.results;
       getGenreString(trendMovies);
       getYearString(trendMovies);
@@ -127,6 +160,7 @@ function getTrendMovies() {
       // console.log(trendMovies);
       const films = FilmCard(trendMovies);
       insertMovies(films);
+      // incrementPage();
     })
     .catch(error => {
       console.log(error);

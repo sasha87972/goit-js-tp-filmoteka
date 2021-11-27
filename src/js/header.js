@@ -3,6 +3,7 @@ import FilmCard from '../templates/filmCard.hbs';
 import { getTrendMovies } from './fetchMoviesAPI';
 import getRefs from './get-refs';
 
+
 const refs = getRefs();
 
 refs.libraryBtn.addEventListener('click', switchToLib);
@@ -22,6 +23,7 @@ function switchToHome() {
 
   refs.watchedBtn.classList.remove('header__btn--current');
   refs.queueBtn.classList.remove('header__btn--current');
+  refs.blockLoad.classList.remove('hidden');
   getTrendMovies();
 }
 
@@ -34,6 +36,7 @@ function switchToLib() {
   refs.libraryControls.classList.remove('visually-hidden');
 
   refs.libraryControls.addEventListener('click', generateLib);
+  refs.blockLoad.classList.add('hidden');
   
   // console.log(generateLib())
   
