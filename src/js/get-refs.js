@@ -8,6 +8,9 @@ export default function getRefs() {
     filmModal: document.querySelector('.js-lightbox'),
     filmModalInfo: document.querySelector('.film-card'),
     closeModalBtn: document.querySelector('.closeBtn'),
+    nextBtn: document.querySelector('.next'),
+    previosBtn: document.querySelector('.previos'),
+    blockLoad: document.querySelector('.load'),
     form: document.getElementById('js-search__form'),
     //header refs
     header: document.querySelector('header'),
@@ -20,6 +23,6 @@ export default function getRefs() {
     libraryControls: document.querySelector('.btn'),
     watchedBtn: document.querySelector('#watched'),
     queueBtn: document.querySelector('#queue'),
-    errorMsg: document.querySelector('.search__text')
+    errorMsg: document.querySelector('.search__text'),
   };
 }

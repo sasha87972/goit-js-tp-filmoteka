@@ -1,3 +1,5 @@
+@import '../utils/variables';
+
 .pager {
   padding: 20px 0 40px 0;
   display: flex;
@@ -88,4 +90,29 @@
   color: $whiteTextColor;
 
   border-radius: 5px;
+}
+
+.load {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.load__btn {
+  height: 44px;
+  width: 130px;
+  padding: auto;
+  text-transform: uppercase;
+  color: $blackTextColor;
+  background: none;
+  border: 1px solid $blackTextColor;
+  box-sizing: border-box;
+  border-radius: $borderRadius;
+  &:hover,
+  &:focus {
+    background-color: $accentColorHover;
+  }
+}
+
+.hidden {
+  display: none;
 }
