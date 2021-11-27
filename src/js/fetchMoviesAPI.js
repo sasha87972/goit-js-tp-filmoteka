@@ -23,6 +23,8 @@ let page = 1;
 
 refs.nextBtn.addEventListener('click', loadNext);
 refs.previosBtn.addEventListener('click', loadPrevios);
+refs.homeBtn.addEventListener('click', setPage);
+refs.logo.addEventListener('click', setPage);
 
 function setPage() {
   return page = 1;
@@ -160,7 +162,6 @@ function getTrendMovies() {
       // console.log(trendMovies);
       const films = FilmCard(trendMovies);
       insertMovies(films);
-      // incrementPage();
     })
     .catch(error => {
       console.log(error);

@@ -1,6 +1,6 @@
 import { generateLib } from './storage';
 import FilmCard from '../templates/filmCard.hbs';
-import { getTrendMovies } from './fetchMoviesAPI';
+import { getTrendMovies,setPage } from './fetchMoviesAPI';
 import getRefs from './get-refs';
 
 
