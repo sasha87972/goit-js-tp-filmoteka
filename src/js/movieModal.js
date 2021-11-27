@@ -55,25 +55,24 @@ export default class OnModalEvents {
       .then(() => {
         const w = document.querySelector('.modalBtn__item--watchedBtn');
         if (w === null) {
-          return
+          return;
         }
         w.addEventListener('click', this.onWatchedLib);
       })
       .then(() => {
         const q = document.querySelector('.modalBtn__item--queueBtn');
-         if (q === null) {
-          return
+        if (q === null) {
+          return;
         }
         q.addEventListener('click', this.onQueueLib);
       })
       .then(() => {
         const r = document.querySelector('.modalBtn__item--remove');
-         if (r === null) {
-          return
+        if (r === null) {
+          return;
         }
-        r.addEventListener('click',this.onRemove)
-    })
-    
+        r.addEventListener('click', this.onRemove);
+      });
   };
   delay(ms) {
     return new Promise((resolve, reject) => {
@@ -93,7 +92,7 @@ export default class OnModalEvents {
     document.querySelector('.footer__box').classList.remove('modalIsOpen');
     let scrolled = window.pageYOffset || document.documentElement.scrollTop;
     if (scrolled > 100) {
-      refs.goTopBtnclassList.add('back_to_top-show');
+      refs.goTopBtn.classList.add('back_to_top-show');
     }
   };
   onKeyPress = e => {
