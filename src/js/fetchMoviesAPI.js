@@ -141,7 +141,6 @@ fetch(`${GENRE_URL}?api_key=${API_KEY}`)
   .then(responce => (genreArr = responce.json()))
   .then(genr => {
     genreArr = genr.genres;
-    // console.log(genreArr);
     return genr.genres;
   })
   .catch(error => {
@@ -159,7 +158,6 @@ function getTrendMovies() {
       getGenreString(trendMovies);
       getYearString(trendMovies);
       getImages(trendMovies);
-      // console.log(trendMovies);
       const films = FilmCard(trendMovies);
       insertMovies(films);
     })
