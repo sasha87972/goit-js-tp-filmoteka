@@ -27,15 +27,15 @@ refs.homeBtn.addEventListener('click', setPage);
 refs.logo.addEventListener('click', setPage);
 
 function setPage() {
-  return page = 1;
+  return (page = 1);
 }
 
 function incrementPage() {
-  return page += 1;
+  return (page += 1);
 }
 
 function decrementPage() {
-  return page -= 1;
+  return (page -= 1);
 }
 
 function loadNext() {
@@ -47,7 +47,7 @@ function loadNext() {
 function loadPrevios() {
   console.log('page Previos', page);
   if (page <= 1) {
-    return 
+    return;
   }
   decrementPage();
   getTrendMovies(page);
@@ -153,7 +153,7 @@ function getTrendMovies() {
       return responce.json();
     })
     .then(film => {
-      console.log('get trend page',page)
+      console.log('get trend page', page);
       const trendMovies = film.results;
       getGenreString(trendMovies);
       getYearString(trendMovies);
@@ -220,19 +220,19 @@ function getDetailFilmInfo(id) {
       getImage(film);
       const detailFilmInfo = film;
       localStorage.setItem('currentFilm', JSON.stringify(detailFilmInfo));
-      
+
       // console.log('watched btn',refs.watchedBtn.classList);
       // console.log('qeue btn', refs.queueBtn.classList);
       if (refs.watchedBtn.classList.contains('header__btn--current')) {
-          const filmInfo = filmModalQueue(film);
-      refs.filmModalInfo.innerHTML = filmInfo;
-        console.log('current watched')
-        return
+        const filmInfo = filmModalQueue(film);
+        refs.filmModalInfo.innerHTML = filmInfo;
+        console.log('current watched');
+        return;
       } else if (refs.queueBtn.classList.contains('header__btn--current')) {
         const filmInfo = filmModalWatched(film);
-      refs.filmModalInfo.innerHTML = filmInfo;
-        console.log('current queue')
-        return 
+        refs.filmModalInfo.innerHTML = filmInfo;
+        console.log('current queue');
+        return;
       }
       const filmInfo = FilmModalTpl(film);
       refs.filmModalInfo.innerHTML = filmInfo;
