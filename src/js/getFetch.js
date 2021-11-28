@@ -31,11 +31,6 @@ export default class GetMovies {
     this.page += 1;
   }
 
-  renderMoviesList(template, moviesItem) {
-    const creatList = template(moviesItem);
-    this.container.insertAdjacentHTML('beforeend', creatList);
-  }
-
   set searchQuery(query) {
     this.query = query;
   }
