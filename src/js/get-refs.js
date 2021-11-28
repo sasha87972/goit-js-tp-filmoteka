@@ -24,5 +24,7 @@ export default function getRefs() {
     watchedBtn: document.querySelector('#watched'),
     queueBtn: document.querySelector('#queue'),
     errorMsg: document.querySelector('.search__text'),
+    // GENRE-MENU
+    genre: document.getElementById('js__genre_menu'),
   };
 }

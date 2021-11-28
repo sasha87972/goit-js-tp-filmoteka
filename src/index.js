@@ -13,3 +13,7 @@ import './js/header';
 import './js/storage';
 import './js/search_query';
 import './js/backToTop';
+
+import './js/getFetch';
+import './js/genre';
+import './js/genre-search';
