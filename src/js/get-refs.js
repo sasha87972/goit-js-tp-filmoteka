@@ -35,6 +35,9 @@ export default function getRefs() {
     modalRemBtn: document.querySelector('.modalBtn__item--remove'),
     modalWatBtn: document.querySelector('.modalBtn__item--watchedBtn'),
     // GENRE-MENU
+    genreHead: document.querySelector('.genre'),
     genre: document.getElementById('js__genre_menu'),
+    //MAIN-MENU
+    noFilm: document.querySelector('.pager__text'),
   };
 }
