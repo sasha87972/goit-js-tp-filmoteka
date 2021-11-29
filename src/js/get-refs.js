@@ -9,7 +9,7 @@ export default function getRefs() {
     filmModalInfo: document.querySelector('.film-card'),
     closeModalBtn: document.querySelector('.closeBtn'),
     nextBtn: document.querySelector('.next'),
-    previosBtn: document.querySelector('.previos'),
+    previousBtn: document.querySelector('.previous'),
     blockLoad: document.querySelector('.load'),
     form: document.getElementById('js-search__form'),
     //header refs

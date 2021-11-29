@@ -23,7 +23,7 @@ const GENRE_URL = `${BASE_URL}/genre/movie/list`;
 let page = 1;
 
 refs.nextBtn.addEventListener('click', loadNext);
-refs.previosBtn.addEventListener('click', loadPrevios);
+refs.previousBtn.addEventListener('click', loadPrevious);
 refs.homeBtn.addEventListener('click', setPage);
 refs.logo.addEventListener('click', setPage);
 
@@ -41,15 +41,16 @@ function decrementPage() {
 
 function loadNext() {
   console.log('page next', page);
+  refs.previousBtn.classList.remove('hidden');
   smoothScrool(0, 400);
   incrementPage();
   getTrendMovies(page);
 }
 
-function loadPrevios() {
-  console.log('page Previos', page);
-  if (page <= 1) {
-    return;
+function loadPrevious() {
+  console.log('page Previous', page);
+  if (page <= 2) {
+    refs.previousBtn.classList.add('hidden');
   }
   decrementPage();
   smoothScrool(0, 400);
