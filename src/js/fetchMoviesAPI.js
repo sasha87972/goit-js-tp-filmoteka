@@ -3,6 +3,7 @@ import FilmCard from '../templates/filmCard.hbs';
 import FilmModalTpl from '../templates/filmModal.hbs';
 import filmModalQueue from '../templates/filmModalQueue';
 import filmModalWatched from '../templates/filmModalWatche';
+import smoothScrool from './smothScrool';
 
 import showErrorMsg from './search_query';
 import errorUrl from '../images/no-poster.jpg';
@@ -40,6 +41,7 @@ function decrementPage() {
 
 function loadNext() {
   console.log('page next', page);
+  smoothScrool(0, 400);
   incrementPage();
   getTrendMovies(page);
 }
@@ -50,6 +52,7 @@ function loadPrevios() {
     return;
   }
   decrementPage();
+  smoothScrool(0, 400);
   getTrendMovies(page);
 }
 // // fetch(`${ID_URL}3?api_key=${API_KEY}`).then(respons => {
