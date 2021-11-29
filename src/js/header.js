@@ -24,6 +24,7 @@ function switchToHome() {
   refs.watchedBtn.classList.remove('header__btn--current');
   refs.queueBtn.classList.remove('header__btn--current');
   refs.blockLoad.classList.remove('hidden');
+  refs.previousBtn.classList.add('hidden');
   getTrendMovies();
 }
 
