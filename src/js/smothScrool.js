@@ -1,7 +1,3 @@
-// export default function smoothScrool() {
-//   window.scrollTo({ top: 0, behavior: 'smooth' });
-// }
-
 export default function smoothScrool(to, duration = 700) {
   const element = document.scrollingElement || document.documentElement,
     start = element.scrollTop,
