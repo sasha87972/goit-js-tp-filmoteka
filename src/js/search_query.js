@@ -33,6 +33,7 @@ async function onHandlerInput(e) {
   if (search === '' || searchResults.length === 0) {
     showErrorMsg();
   }
+  refs.previousBtn.classList.add('hidden');
   refs.nextBtn.addEventListener('click', loadSearchNext);
   refs.previousBtn.addEventListener('click', loadSearchPrevious);
   console.log(searchResults);
