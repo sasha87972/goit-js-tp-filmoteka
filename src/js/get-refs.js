@@ -29,6 +29,7 @@ export default function getRefs() {
     //color-switch
     themeToggle: document.getElementById('theme-switch-toggle'),
     footer: document.getElementById('footer'),
+    footerBox: document.querySelector('.footer__box'),
     //movie modal
     modalQueBtn: document.querySelector('.modalBtn__item--queueBtn'),
     modalRemBtn: document.querySelector('.modalBtn__item--remove'),

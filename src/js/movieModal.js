@@ -19,37 +19,46 @@ export default class OnModalEvents {
     this.onQueueLib = onQueueLib;
     this.onRemove = onRemove;
   }
-  q = null;
-  w = null;
 
   loadEventListener = () => {
     this.refs.films.addEventListener('click', this.onModalOpen);
     this.refs.backdrop.addEventListener('click', this.onBackDropClick);
   };
+
   filmId = null;
+
   onModalOpen = e => {
     e.preventDefault();
     if (e.target.nodeName === 'UL') {
       return;
     }
     this.filmId = e.target.parentNode.parentNode.getAttribute('id');
-    this.currentFilm();
-    this.refs.body.classList.add('modal-open');
-    this.refs.filmModal.classList.add('is-open');
-    this.onModalLoadEventListener();
-    document.querySelector('.footer__box').classList.add('modalIsOpen');
-    if (refs.goTopBtn.classList.contains('back_to_top-show')) {
-      refs.goTopBtn.classList.remove('back_to_top-show');
-    }
+    this.buildModal();
   };
+
+  buildModal = () => {
+    this.currentFilm();
+    this.onModalEvents();
+    this.checkToTopBtn();
+  };
+
   currentFilm = () => {
     this.getDetailFilmInfo(this.filmId);
   };
+
+  onModalEvents = () => {
+    this.refs.body.classList.add('modal-open');
+    this.refs.filmModal.classList.add('is-open');
+    this.onModalLoadEventListener();
+    refs.footerBox.classList.add('modalIsOpen');
+  };
+
   onModalLoadEventListener = () => {
     this.refs.closeModalBtn.addEventListener('click', this.onModalClose);
     window.addEventListener('keydown', this.onKeyPress);
     this.loadStorageBtnListener();
   };
+
   loadStorageBtnListener = () => {
     this.delay(500)
       .then(() => {
@@ -74,37 +83,53 @@ export default class OnModalEvents {
         r.addEventListener('click', this.onRemove);
       });
   };
+
   delay(ms) {
     return new Promise((resolve, reject) => {
       setTimeout(resolve, ms);
     });
   }
-  onModalRemoveEventListener = () => {
-    window.removeEventListener('keydown', this.onKeyPress);
-  };
-  onModalClose = e => {
-    this.onModalRemoveEventListener();
-    this.filmId = null;
-    this.refs.filmModalInfo.innerHTML = '';
-    this.refs.body.classList.remove('modal-open');
-    this.refs.filmModal.classList.remove('is-open');
-    localStorage.removeItem('currentFilm');
-    document.querySelector('.footer__box').classList.remove('modalIsOpen');
-    let scrolled = window.pageYOffset || document.documentElement.scrollTop;
-    if (scrolled > 100) {
-      refs.goTopBtn.classList.add('back_to_top-show');
-    }
-  };
+
   onKeyPress = e => {
     if (e.code === 'Escape') {
       this.onModalClose();
     }
   };
+
   onBackDropClick = e => {
     if (e.currentTarget === e.target) {
       this.onModalClose();
     }
   };
+
+  onModalClose = e => {
+    this.onModalRemoveEventListener();
+    this.clearModalCard();
+    this.refs.body.classList.remove('modal-open');
+    this.refs.filmModal.classList.remove('is-open');
+    localStorage.removeItem('currentFilm');
+    refs.footerBox.classList.remove('modalIsOpen');
+    this.checkToTopBtn();
+  };
+
+  clearModalCard = () => {
+    this.filmId = null;
+    this.refs.filmModalInfo.innerHTML = '';
+  };
+
+  onModalRemoveEventListener = () => {
+    window.removeEventListener('keydown', this.onKeyPress);
+  };
+
+  checkToTopBtn = () => {
+    let scrolled = window.pageYOffset || document.documentElement.scrollTop;
+    if (refs.goTopBtn.classList.contains('back_to_top-show')) {
+      refs.goTopBtn.classList.remove('back_to_top-show');
+    } else if (scrolled > 100) {
+      refs.goTopBtn.classList.add('back_to_top-show');
+    }
+  };
+
   init = () => {
     this.loadEventListener();
   };
