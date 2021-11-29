@@ -76,6 +76,9 @@
 .film__title {
   color: $blackTextColor;
   text-transform: uppercase;
+  height: 30px;
+  display: flex;
+  align-items: center;
 }
 
 .film__info {
