@@ -6,15 +6,6 @@ window.addEventListener('scroll', trackScroll);
 refs.goTopBtn.addEventListener('click', scrollingTop);
 
 function trackScroll() {
-  // const scrolled = window.pageYOffset;
-  // const coords = document.documentElement.clientHeight;
-
-  // if (scrolled > coords) {
-  //   refs.goTopBtn.classList.add('back_to_top-show');
-  // }
-  // if (scrolled < coords) {
-  //   refs.goTopBtn.classList.remove('back_to_top-show');
-  // }
   window.onscroll = function () {
     let scrolled = window.pageYOffset || document.documentElement.scrollTop;
     if (scrolled > 100) {

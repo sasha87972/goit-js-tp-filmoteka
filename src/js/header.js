@@ -37,33 +37,10 @@ function switchToLib() {
 
   refs.libraryControls.addEventListener('click', generateLib);
   refs.blockLoad.classList.add('hidden');
-  
-  // console.log(generateLib())
-  
   openWatched();
-  // openQueue();
-
-  // let wLib = JSON.parse(localStorage.getItem('filmWatched'));
-  // let qLib = JSON.parse(localStorage.getItem('filmQueue'));
-
-  // // console.log('wLib', wLib);
-  // // console.log('qLib', qLib);
-  // // let lib = [...wLib, ...qLib];
-  // renderLib(wLib);
-  // renderLib(qLib);
-
-  // let lib = [...renderLib(wLib),...renderLib(qLib)];
-  // console.log('lib', lib);
-  // if (lib.length === 0) {
-  //   console.log('is empty')
-  // }
-  // const watchedFilmLib = FilmCard(lib);
-  // refs.library.innerHTML = watchedFilmLib;
-  
 }
 
 function openWatched() {
-// console.log('click on watched')
   refs.watchedBtn.classList.add('header__btn--current');
   refs.queueBtn.classList.remove('header__btn--current');
   
@@ -71,7 +48,6 @@ function openWatched() {
     renderLib(wLib);
 
   let lib = [...renderLib(wLib)];
-  // console.log('lib', lib);
   if (lib.length === 0) {
     console.log('is empty')
   }
@@ -80,8 +56,6 @@ function openWatched() {
 }
 
 function openQueue() {
-  // console.log('click on queue')
-  
   refs.queueBtn.classList.add('header__btn--current');
   refs.watchedBtn.classList.remove('header__btn--current');
 
@@ -89,7 +63,6 @@ function openQueue() {
   renderLib(qLib);
 
   let lib = [...renderLib(qLib)];
-  // console.log('lib', lib);
   if (lib.length === 0) {
     console.log('is empty')
   }
@@ -99,10 +72,8 @@ function openQueue() {
 
 function renderLib(data) {
     if (data === null) {
-      // console.log('null', data = []);
       return data = [];
     } else {
-      // console.log('not null', data);
       return data
     }
   }
