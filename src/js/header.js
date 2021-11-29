@@ -71,7 +71,7 @@ function renderLib(data) {
     if (data === null) {
       return data = [];
     } else {
-      return data;
+      return data
     }
   }
 
