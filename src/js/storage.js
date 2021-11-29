@@ -2,9 +2,6 @@ import getRefs from './get-refs';
 import FilmCard from '../templates/filmCard.hbs';
 
 const refs = getRefs();
-const watchedBtn = document.querySelector('.modalBtn__item--watchedBtn');
-const queueBtn = document.querySelector('.modalBtn__item--queueBtn');
-
 localStorage.clear();
 
 
@@ -55,23 +52,6 @@ function onQueueLib() {
 }
 function generateLib(e) {
     return JSON.parse(localStorage.getItem(e));
-
-  // if (e.target.id === 'watched') {
-    // console.log('target W', e.target.id);
-  //   let watchedLib = JSON.parse(localStorage.getItem(e));
-  //   console.log(watchedLib);
-  //   const watchedFilmLib = FilmCard(watchedLib);
-  //   console.log();
-  //   refs.films.innerHTML = watchedFilmLib;
-  // // }
-  // if (e.target.id === 'queue') {
-  //   console.log('target Q', e.target.id);
-  //   let queueLib = JSON.parse(localStorage.getItem('filmQueue'));
-  //   console.log(queueLib);
-  //   const queueFilmLib = FilmCard(queueLib);
-  //   console.log();
-  //   refs.films.innerHTML = queueFilmLib;
-  // }
 }
 
 export { onRemove,onWatchedLib, onQueueLib, generateLib };

@@ -20,6 +20,15 @@ export default function getRefs() {
     libraryControls: document.querySelector('.btn'),
     watchedBtn: document.querySelector('#watched'),
     queueBtn: document.querySelector('#queue'),
-    errorMsg: document.querySelector('.search__text')
+    errorMsg: document.querySelector('.search__text'),
+    //loader
+    hide: document.querySelector('.hide'),
+    //color-switch
+    themeToggle: document.getElementById('theme-switch-toggle'),
+    footer: document.getElementById('footer'),
+    //movie modal
+    modalQueBtn: document.querySelector('.modalBtn__item--queueBtn'),
+    modalRemBtn: document.querySelector('.modalBtn__item--remove'),
+    modalWatBtn: document.querySelector('.modalBtn__item--watchedBtn'),
   };
 }

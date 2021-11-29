@@ -1,8 +1,10 @@
-let hide = document.querySelector('.hide');
+import getRefs from './get-refs';
+
+const refs = getRefs();
 
 window.addEventListener('load', () => {
-hide.classList.add('behind');
+refs.hide.classList.add('behind');
 setTimeout(() =>  {
-    hide.remove();
+    refs.hide.remove();
 }, 3000);
 });
