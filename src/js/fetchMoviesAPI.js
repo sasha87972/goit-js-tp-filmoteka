@@ -40,7 +40,7 @@ function decrementPage() {
 }
 
 function loadNext() {
-  console.log('page next', page);
+  
   refs.previousBtn.classList.remove('hidden');
   smoothScrool(0, 400);
   incrementPage();
@@ -48,7 +48,7 @@ function loadNext() {
 }
 
 function loadPrevious() {
-  console.log('page Previous', page);
+  
   if (page <= 2) {
     refs.previousBtn.classList.add('hidden');
   }
@@ -157,7 +157,7 @@ function getTrendMovies() {
       return responce.json();
     })
     .then(film => {
-      console.log('get trend page', page);
+      
       const trendMovies = film.results;
       getGenreString(trendMovies);
       getYearString(trendMovies);
