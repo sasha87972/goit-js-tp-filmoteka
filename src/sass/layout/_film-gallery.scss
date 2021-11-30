@@ -9,14 +9,13 @@
     padding: 60px 0 60px 0;
   }
 }
-.pager__body._container {
-}
-.pager__text{
+
+.pager__text {
   text-align: center;
   text-transform: uppercase;
   font-size: 24px;
   @media screen and (max-width: 767px) {
-  font-size: 18px;
+    font-size: 18px;
   }
 }
 .film__list {
@@ -55,9 +54,6 @@
       margin-bottom: 0px;
     }
   }
-}
-
-.film__card {
 }
 
 .film__poster img {
