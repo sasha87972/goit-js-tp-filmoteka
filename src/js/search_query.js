@@ -1,107 +1,57 @@
-// 1.Рассширить форму поиска
-import FilmCard from '../templates/filmCard.hbs';
+import MovieService from './getFetch';
 import getRefs from './get-refs';
-import { getGenreString, getYearString, getImages } from './fetchMoviesAPI';
-import smoothScrool from './smothScrool';
+import renderCards from './renderCard';
 
+import { getGenreString, getYearString } from './fetchMoviesAPI';
+
+import '@pnotify/core/dist/BrightTheme.css';
+import '@pnotify/core/dist/PNotify.css';
+
+const { error, info, notice } = require('@pnotify/core');
+
+const API = new MovieService();
 const refs = getRefs();
 
-const inputRefs = document.getElementById('search__form');
-
-const API_KEY = '0556b87ba267edab76fd3e7e8d7e5097';
-
-const BASE_URL = 'https://api.themoviedb.org/3';
-
-const SEARCH_URL = `${BASE_URL}/search/movie`;
-
-refs.form.addEventListener('submit', onHandlerInput);
-
-let page = 1;
-
-function renderPage(card) {
-  refs.films.innerHTML = '';
-  refs.films.insertAdjacentHTML('beforeend', FilmCard(card));
-}
-let search = null;
-async function onHandlerInput(e) {
+refs.form.addEventListener('submit', e => {
   e.preventDefault();
+  const value = e.currentTarget.elements.query.value.trim();
+  if (!value) return onEmptySearch();
 
-  search = e.currentTarget.elements.query.value;
-  const getElements = await getMovie(search);
-    console.log(getElements);
-  const searchResults = getElements.results;
-  if (search === '' || searchResults.length === 0) {
-    showErrorMsg();
+  creatRequest(value);
+});
+
+async function creatRequest(value) {
+  API.searchQuery = value;
+  try {
+    const getFilmList = await API.searchMovies();
+    if (getFilmList.results.length === 0) return onInfo();
+    getYearString(getFilmList.results);
+    getGenreString(getFilmList.results);
+    renderCards(getFilmList.results);
+    refs.form.reset();
+  } catch (error) {
+    onError();
   }
-  refs.previousBtn.classList.add('hidden');
-  refs.nextBtn.addEventListener('click', loadSearchNext);
-  refs.previousBtn.addEventListener('click', loadSearchPrevious);
-  console.log(searchResults);
-  getGenreString(searchResults);
-  getYearString(searchResults);
-  getImages(searchResults);
-  renderPage(searchResults);
-  console.log(searchResults);
-  refs.form.reset();
-}
-function getMovie(query,page) {
-    return fetch(`${SEARCH_URL}?api_key=${API_KEY}&query=${query}&page=${page}`).then(resp => resp.json()).catch(e => console.log(e));
-}
-export default function showErrorMsg() {
-    refs.errorMsg.textContent = "Search result not successful. Enter the correct movie name!";
-    setTimeout(clearErrorMsg, 5000);
-}
-function clearErrorMsg() {
-  refs.errorMsg.textContent = " ";
 }
 
-function incrementPage() {
-  return (page += 1);
+function onError() {
+  return error({
+    text: 'Search result not successful. Enter the correct movie name!',
+    type: 'Error',
+    delay: 2000,
+  });
+function onInfo() {
+  return info({
+    text: 'Sorry, but no such movie was found.',
+    type: 'info',
+    delay: 2000,
+  });
+}
+function onEmptySearch() {
+  return notice({
+    text: 'What do you want to watch?',
+    type: 'info',
+    delay: 2000,
+  });
 }
 
-function decrementPage() {
-  return (page -= 1);
-}
-
-function loadSearchNext() {
-  
-  refs.previousBtn.classList.remove('hidden');
-  smoothScrool(0, 400);
-  incrementPage();
-  
-  const r = getMovie(search, page)
-    .then(movi => {
-      const param = movi.results;
-      getGenreString(param);
-  getYearString(param);
-  getImages(param);
-  renderPage(param);
-    })
-  
-}
-
-function loadSearchPrevious() {
-  
-  if (page <= 2) {
-    refs.previousBtn.classList.add('hidden');
-  }
-  decrementPage();
-  smoothScrool(0, 400);
-
-  const r = getMovie(search, page)
-    .then(movi => {
-      const param = movi.results;
-      getGenreString(param);
-  getYearString(param);
-  getImages(param);
-  renderPage(param);
-    })
-}
-
-function removeEvent() {
-  refs.nextBtn.removeEventListener('click', loadSearchNext);
-  refs.previousBtn.removeEventListener('click', loadSearchPrevious);
-}
-
-refs.homeBtn.addEventListener('click', removeEvent);
-refs.logo.addEventListener('click', removeEvent);
