@@ -20,10 +20,12 @@ function switchToHome() {
   refs.searchForm.classList.remove('visually-hidden');
   refs.libraryControls.classList.add('visually-hidden');
   refs.logo.classList.add('header--home');
-
   refs.watchedBtn.classList.remove('header__btn--current');
   refs.queueBtn.classList.remove('header__btn--current');
   refs.blockLoad.classList.remove('hidden');
+  refs.previousBtn.classList.add('hidden');
+  refs.genreHead.classList.remove('hidden');
+  refs.noFilm.classList.add('hidden');
   getTrendMovies();
 }
 
@@ -34,9 +36,10 @@ function switchToLib() {
   refs.library.classList.add('library');
   refs.searchForm.classList.add('visually-hidden');
   refs.libraryControls.classList.remove('visually-hidden');
-
   refs.libraryControls.addEventListener('click', generateLib);
   refs.blockLoad.classList.add('hidden');
+  refs.genreHead.classList.add('hidden');
+  refs.noFilm.classList.remove('hidden');
   openWatched();
 }
 
@@ -49,7 +52,11 @@ function openWatched() {
 
   let lib = [...renderLib(wLib)];
   if (lib.length === 0) {
+    refs.noFilm.textContent = "Список фільмів порожній";
     console.log('is empty')
+  }
+  else {
+    refs.noFilm.textContent = "";
   }
   const watchedFilmLib = FilmCard(lib);
   refs.library.innerHTML = watchedFilmLib;
@@ -64,7 +71,11 @@ function openQueue() {
 
   let lib = [...renderLib(qLib)];
   if (lib.length === 0) {
+    refs.noFilm.textContent = "Список фільмів порожній";
     console.log('is empty')
+  }
+  else {
+    refs.noFilm.textContent = "";
   }
   const watchedFilmLib = FilmCard(lib);
   refs.library.innerHTML = watchedFilmLib;
