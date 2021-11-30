@@ -1,6 +1,6 @@
 import MovieService from './getFetch';
 import getRefs from './get-refs';
-import FilmCard from '../templates/userSelectionCard.hbs';
+import renderCards from './renderCard';
 
 import { getGenreString, getYearString, getImages } from './fetchMoviesAPI';
 
@@ -12,30 +12,25 @@ const { error, info, notice } = require('@pnotify/core');
 const API = new MovieService();
 const refs = getRefs();
 
-refs.form.addEventListener('submit', async e => {
+refs.form.addEventListener('submit', e => {
   e.preventDefault();
-
   const value = e.currentTarget.elements.query.value.trim();
+  if (!value) return onEmptySearch();
 
+  creatRequest(value);
+});
+
+async function creatRequest(value) {
+  API.searchQuery = value;
   try {
-    if (!value) return onEmptySearch();
-
-    API.searchQuery = value;
-    const getFilmList = await API.searchMovies(value);
-    if (getFilmList.results.length === 0) {
-      return onInfo();
-    }
-
-    await renderPage(getFilmList);
+    const getFilmList = await API.searchMovies();
+    if (getFilmList.results.length === 0) return onInfo();
+    // getGenreString(getFilmList.results);
+    renderCards(getFilmList.results);
     refs.form.reset();
   } catch (error) {
     onError();
   }
-});
-
-async function renderPage(card) {
-  refs.films.innerHTML = '';
-  refs.films.insertAdjacentHTML('beforeend', FilmCard(card.results));
 }
 
 function onError() {
