@@ -40,7 +40,6 @@ function onError() {
     type: 'Error',
     delay: 2000,
   });
-}
 function onInfo() {
   return info({
     text: 'Sorry, but no such movie was found.',
@@ -55,3 +54,4 @@ function onEmptySearch() {
     delay: 2000,
   });
 }
+

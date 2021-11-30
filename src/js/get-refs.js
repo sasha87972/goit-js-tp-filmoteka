@@ -9,7 +9,7 @@ export default function getRefs() {
     filmModalInfo: document.querySelector('.film-card'),
     closeModalBtn: document.querySelector('.closeBtn'),
     nextBtn: document.querySelector('.next'),
-    previosBtn: document.querySelector('.previos'),
+    previousBtn: document.querySelector('.previous'),
     blockLoad: document.querySelector('.load'),
     form: document.getElementById('js-search__form'),
     //header refs
@@ -24,7 +24,20 @@ export default function getRefs() {
     watchedBtn: document.querySelector('#watched'),
     queueBtn: document.querySelector('#queue'),
     errorMsg: document.querySelector('.search__text'),
+    //loader
+    hide: document.querySelector('.hide'),
+    //color-switch
+    themeToggle: document.getElementById('theme-switch-toggle'),
+    footer: document.getElementById('footer'),
+    footerBox: document.querySelector('.footer__box'),
+    //movie modal
+    modalQueBtn: document.querySelector('.modalBtn__item--queueBtn'),
+    modalRemBtn: document.querySelector('.modalBtn__item--remove'),
+    modalWatBtn: document.querySelector('.modalBtn__item--watchedBtn'),
     // GENRE-MENU
+    genreHead: document.querySelector('.genre'),
     genre: document.getElementById('js__genre_menu'),
+    //MAIN-MENU
+    noFilm: document.querySelector('.pager__text'),
   };
 }

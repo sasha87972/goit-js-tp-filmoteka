@@ -3,6 +3,7 @@ import FilmCard from '../templates/filmCard.hbs';
 import FilmModalTpl from '../templates/filmModal.hbs';
 import filmModalQueue from '../templates/filmModalQueue';
 import filmModalWatched from '../templates/filmModalWatche';
+import smoothScrool from './smothScrool';
 
 import showErrorMsg from './search_query';
 import errorUrl from '../images/no-poster.jpg';
@@ -22,7 +23,7 @@ const GENRE_URL = `${BASE_URL}/genre/movie/list`;
 let page = 1;
 
 refs.nextBtn.addEventListener('click', loadNext);
-refs.previosBtn.addEventListener('click', loadPrevios);
+refs.previousBtn.addEventListener('click', loadPrevious);
 refs.homeBtn.addEventListener('click', setPage);
 refs.logo.addEventListener('click', setPage);
 
@@ -39,17 +40,20 @@ function decrementPage() {
 }
 
 function loadNext() {
-  console.log('page next', page);
+  
+  refs.previousBtn.classList.remove('hidden');
+  smoothScrool(0, 400);
   incrementPage();
   getTrendMovies(page);
 }
 
-function loadPrevios() {
-  console.log('page Previos', page);
-  if (page <= 1) {
-    return;
+function loadPrevious() {
+  
+  if (page <= 2) {
+    refs.previousBtn.classList.add('hidden');
   }
   decrementPage();
+  smoothScrool(0, 400);
   getTrendMovies(page);
 }
 // // fetch(`${ID_URL}3?api_key=${API_KEY}`).then(respons => {
@@ -153,7 +157,7 @@ function getTrendMovies() {
       return responce.json();
     })
     .then(film => {
-      console.log('get trend page', page);
+      
       const trendMovies = film.results;
       getGenreString(trendMovies);
       getYearString(trendMovies);
