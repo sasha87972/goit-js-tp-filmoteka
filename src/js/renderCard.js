@@ -1,4 +1,4 @@
-import FilmCard from '../templates/FilmCard.hbs';
+import FilmCard from '../templates/filmCard.hbs';
 import getRefs from './get-refs';
 import MovieService from './getFetch';
 
