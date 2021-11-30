@@ -19,8 +19,10 @@ refs.previousBtn.addEventListener('click', loadPrevious);
 refs.homeBtn.addEventListener('click', setPage);
 refs.logo.addEventListener('click', setPage);
 
-async function searchMovies(query,page) {
-  const response = await fetch(`${refs.SEARCH_URL}?api_key=${refs.API_KEY}&query=${query}&page=${page}`);
+async function searchMovies(query, page) {
+  const response = await fetch(
+    `${refs.SEARCH_URL}?api_key=${refs.API_KEY}&query=${query}&page=${page}`,
+  );
   return await response.json();
 }
 
@@ -129,10 +131,10 @@ function getImages(moviesArr) {
   moviesArr.forEach(movie => {
     if (movie.poster_path === null) {
       let poster = `${errorUrl}`;
-      movie.poster_path = poster;
+      movie.poster = poster;
     } else {
       let poster = `https://www.themoviedb.org/t/p/w500${movie.poster_path}`;
-      movie.poster_path = poster;
+      movie.poster = poster;
     }
   });
 }

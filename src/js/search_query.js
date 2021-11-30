@@ -2,7 +2,7 @@ import getRefs from './get-refs';
 import renderCards from './renderCard';
 import smoothScrool from './smothScrool';
 
-import { searchMovies,getGenreString,getYearString,getImages } from './fetchMoviesAPI';
+import { searchMovies, getGenreString, getYearString, getImages } from './fetchMoviesAPI';
 
 import '@pnotify/core/dist/BrightTheme.css';
 import '@pnotify/core/dist/PNotify.css';
@@ -66,38 +66,33 @@ function decrementPage() {
 }
 
 function loadSearchNext() {
-
   refs.previousBtn.classList.remove('visually-hidden');
   smoothScrool(0, 400);
   incrementPage();
 
-  const r = searchMovies(value, page)
-    .then(movi => {
-      const param = movi.results;
-      getGenreString(param);
-  getYearString(param);
-  getImages(param);
-  renderCards(param);
-    })
-
+  const r = searchMovies(value, page).then(movi => {
+    const param = movi.results;
+    getGenreString(param);
+    getYearString(param);
+    getImages(param);
+    renderCards(param);
+  });
 }
 
 function loadSearchPrevious() {
-
   if (page <= 2) {
     refs.previousBtn.classList.add('visually-hidden');
   }
   decrementPage();
   smoothScrool(0, 400);
 
-  const r = searchMovies(value, page)
-    .then(movi => {
-      const param = movi.results;
-      getGenreString(param);
-  getYearString(param);
-  getImages(param);
-  renderCards(param);
-    })
+  const r = searchMovies(value, page).then(movi => {
+    const param = movi.results;
+    getGenreString(param);
+    getYearString(param);
+    getImages(param);
+    renderCards(param);
+  });
 }
 
 function removeEvent() {
@@ -106,4 +101,4 @@ function removeEvent() {
 }
 
 refs.homeBtn.addEventListener('click', removeEvent);
-refs.logo.addEventListener('click', removeEvent); 
+refs.logo.addEventListener('click', removeEvent);
