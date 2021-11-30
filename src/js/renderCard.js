@@ -1,18 +1,15 @@
 import FilmCard from '../templates/FilmCard.hbs';
 import getRefs from './get-refs';
-import MovieService from './getFetch';
 
-const API = new MovieService();
+import { getGenreString, getYearString, getImages } from './fetchMoviesAPI';
+
 const refs = getRefs();
 
 async function renderPage(card) {
-  card.forEach(item => {
-    if (API.ImgName <= item.poster_path.length)
-      item.poster_path = `${API.IMG_URL}${item.poster_path}`;
-  });
+  getGenreString(card);
+  getYearString(card);
+  getImages(card);
   refs.films.innerHTML = '';
-  // API.genreList(card);
-
   refs.films.insertAdjacentHTML('beforeend', FilmCard(card));
 }
 
