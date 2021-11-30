@@ -1,9 +1,7 @@
-import MovieService from './getFetch';
-import { getGenreString, getYearString } from './fetchMoviesAPI';
+import { getTrend } from './fetchMoviesAPI';
 import renderCards from './renderCard';
 import getRefs from './get-refs';
 
-const API = new MovieService();
 const refs = getRefs();
 
 refs.genre.addEventListener('click', async e => {
@@ -11,7 +9,7 @@ refs.genre.addEventListener('click', async e => {
   if (e.target.nodeName != 'BUTTON') return;
 
   const genreID = e.target.dataset.sources;
-  const objList = await API.getTrend();
+  const objList = await getTrend();
   await renderElements(objList.results, genreID);
 });
 
@@ -23,8 +21,6 @@ async function renderElements(list, currentGenre) {
       const chooseGenre = arrID.find(item => item == currentGenre);
       return chooseGenre;
     });
-    getYearString(itemList);
-    getGenreString(itemList);
     renderCards(itemList);
   } catch (error) {
     console.log(error);

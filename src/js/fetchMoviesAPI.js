@@ -32,6 +32,16 @@ async function searchMovies(query) {
   return await response.json();
 }
 
+async function getTrend() {
+  const response = await fetch(`${TREND_URL}?api_key=${API_KEY}&page=1`);
+  return await response.json();
+}
+
+async function genreMovies() {
+  const response = await fetch(`${GENRE_URL}?api_key=${API_KEY}`);
+  return await response.json();
+}
+
 function setPage() {
   return (page = 1);
 }
@@ -194,4 +204,6 @@ export {
   getTrendMovies,
   getImages,
   searchMovies,
+  getTrend,
+  genreMovies,
 };
