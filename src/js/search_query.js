@@ -2,7 +2,7 @@ import MovieService from './getFetch';
 import getRefs from './get-refs';
 import renderCards from './renderCard';
 
-import { getGenreString, getYearString, getImages } from './fetchMoviesAPI';
+import { getGenreString, getYearString } from './fetchMoviesAPI';
 
 import '@pnotify/core/dist/BrightTheme.css';
 import '@pnotify/core/dist/PNotify.css';
@@ -25,7 +25,8 @@ async function creatRequest(value) {
   try {
     const getFilmList = await API.searchMovies();
     if (getFilmList.results.length === 0) return onInfo();
-    // getGenreString(getFilmList.results);
+    getYearString(getFilmList.results);
+    getGenreString(getFilmList.results);
     renderCards(getFilmList.results);
     refs.form.reset();
   } catch (error) {

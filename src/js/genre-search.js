@@ -1,5 +1,5 @@
 import MovieService from './getFetch';
-import { getGenreString } from './fetchMoviesAPI';
+import { getGenreString, getYearString } from './fetchMoviesAPI';
 import renderCards from './renderCard';
 import getRefs from './get-refs';
 
@@ -23,7 +23,8 @@ async function renderElements(list, currentGenre) {
       const chooseGenre = arrID.find(item => item == currentGenre);
       return chooseGenre;
     });
-    // getGenreString(itemList);
+    getYearString(itemList);
+    getGenreString(itemList);
     renderCards(itemList);
   } catch (error) {
     console.log(error);

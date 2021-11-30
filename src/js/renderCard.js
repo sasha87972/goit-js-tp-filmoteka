@@ -11,8 +11,7 @@ async function renderPage(card) {
       item.poster_path = `${API.IMG_URL}${item.poster_path}`;
   });
   refs.films.innerHTML = '';
-  API.genreList(card);
-  console.log(card);
+  // API.genreList(card);
 
   refs.films.insertAdjacentHTML('beforeend', FilmCard(card));
 }

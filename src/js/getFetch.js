@@ -4,10 +4,7 @@ export default class GetMovies {
     this.page = 0;
     this.query = '';
     this.itemMovies = '';
-    // this.template;
-    this.genre_name = []; //Под вопросом
-    // this.template;
-    // this.container;
+    this.genres_list = [];
 
     this.key = '0556b87ba267edab76fd3e7e8d7e5097';
     this.BASE_URL = 'https://api.themoviedb.org/3';
@@ -25,8 +22,9 @@ export default class GetMovies {
   }
 
   async genreMovies() {
-    const response = await fetch(`${this.GENRE_URL}?api_key=${this.key}`);
-    return await response.json();
+    const response = await fetch(`${this.GENRE_URL}?api_key=${this.key}`).then(res => res.json());
+    this.genres_list = response.genres;
+    return await response;
   }
 
   async getTrend() {
@@ -35,18 +33,19 @@ export default class GetMovies {
   }
 
   async searchGenre(list) {
-    const genre = await this.genreMovies();
     const genres = await list.map(item => {
-      const genreItem = genre.genres.find(id => id.id === item);
-      return genreItem.name;
+      this.genres_list.find(id => id.id === item);
+      console.log(this.genres_list.name);
+      // this.genre_name.push(this.genres_list.name);
     });
     return genres;
   }
 
   async genreList(query) {
     query.forEach(async item => {
-      const convert = await this.searchGenre(item.genre_ids);
-      item.genre_string = convert.slice(0, 3).join(', ');
+      await this.searchGenre(item.genre_ids);
+      // item.genre_string = await this.genre_name.slice(0, 3).join(', ');
+      this.genre_name = [];
     });
   }
   nextPage() {
