@@ -14,7 +14,6 @@ refs.form.addEventListener('submit', e => {
   e.preventDefault();
   const value = e.currentTarget.elements.query.value.trim();
   if (!value) return onEmptySearch();
-
   creatRequest(value);
 });
 
