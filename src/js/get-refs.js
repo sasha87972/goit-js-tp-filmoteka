@@ -1,5 +1,13 @@
 export default function getRefs() {
   return {
+    //API const
+    API_KEY: '0556b87ba267edab76fd3e7e8d7e5097',
+    BASE_URL: 'https://api.themoviedb.org/3',
+    TREND_URL: 'https://api.themoviedb.org/3/trending/movie/week',
+    SEARCH_URL: 'https://api.themoviedb.org/3/search/movie',
+    ID_URL: 'https://api.themoviedb.org/3/movie/',
+    GENRE_URL: 'https://api.themoviedb.org/3/genre/movie/list',
+    // Main refs
     body: document.querySelector('body'),
     footerBtn: document.querySelector('.footer__button'),
     goTopBtn: document.querySelector('.back_to_top'),

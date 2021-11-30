@@ -6,7 +6,6 @@ import './js/fetchMoviesAPI';
 import './js/footerModal';
 
 import './js/loader';
-import './js/pagination';
 import './js/colorSwitch';
 import './js/movieModal';
 import './js/header';

@@ -1,8 +1,7 @@
 import { generateLib } from './storage';
 import FilmCard from '../templates/filmCard.hbs';
-import { getTrendMovies,setPage } from './fetchMoviesAPI';
+import { getTrendMovies, getYearString } from './fetchMoviesAPI';
 import getRefs from './get-refs';
-
 
 const refs = getRefs();
 
@@ -22,10 +21,10 @@ function switchToHome() {
   refs.logo.classList.add('header--home');
   refs.watchedBtn.classList.remove('header__btn--current');
   refs.queueBtn.classList.remove('header__btn--current');
-  refs.blockLoad.classList.remove('hidden');
-  refs.previousBtn.classList.add('hidden');
-  refs.genreHead.classList.remove('hidden');
-  refs.noFilm.classList.add('hidden');
+  refs.blockLoad.classList.remove('visually-hidden');
+  refs.previousBtn.classList.add('visually-hidden');
+  refs.genreHead.classList.remove('visually-hidden');
+  refs.noFilm.classList.add('visually-hidden');
   getTrendMovies();
 }
 
@@ -37,27 +36,26 @@ function switchToLib() {
   refs.searchForm.classList.add('visually-hidden');
   refs.libraryControls.classList.remove('visually-hidden');
   refs.libraryControls.addEventListener('click', generateLib);
-  refs.blockLoad.classList.add('hidden');
-  refs.genreHead.classList.add('hidden');
-  refs.noFilm.classList.remove('hidden');
+  refs.blockLoad.classList.add('visually-hidden');
+  refs.genreHead.classList.add('visually-hidden');
+  refs.noFilm.classList.remove('visually-hidden');
   openWatched();
 }
 
 function openWatched() {
   refs.watchedBtn.classList.add('header__btn--current');
   refs.queueBtn.classList.remove('header__btn--current');
-  
-    let wLib = JSON.parse(localStorage.getItem('filmWatched'));
-    renderLib(wLib);
+
+  let wLib = JSON.parse(localStorage.getItem('filmWatched'));
+  renderLib(wLib);
 
   let lib = [...renderLib(wLib)];
   if (lib.length === 0) {
-    refs.noFilm.textContent = "Список фільмів порожній";
-    console.log('is empty')
+    refs.noFilm.textContent = 'Список фільмів порожній';
+  } else {
+    refs.noFilm.textContent = '';
   }
-  else {
-    refs.noFilm.textContent = "";
-  }
+  getYearString(lib);
   const watchedFilmLib = FilmCard(lib);
   refs.library.innerHTML = watchedFilmLib;
 }
@@ -71,21 +69,19 @@ function openQueue() {
 
   let lib = [...renderLib(qLib)];
   if (lib.length === 0) {
-    refs.noFilm.textContent = "Список фільмів порожній";
-    console.log('is empty')
+    refs.noFilm.textContent = 'Список фільмів порожній';
+  } else {
+    refs.noFilm.textContent = '';
   }
-  else {
-    refs.noFilm.textContent = "";
-  }
+  getYearString(lib);
   const watchedFilmLib = FilmCard(lib);
   refs.library.innerHTML = watchedFilmLib;
 }
 
 function renderLib(data) {
-    if (data === null) {
-      return data = [];
-    } else {
-      return data
-    }
+  if (data === null) {
+    return (data = []);
+  } else {
+    return data;
   }
-
+}
