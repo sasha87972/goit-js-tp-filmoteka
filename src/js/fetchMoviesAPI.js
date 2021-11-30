@@ -178,10 +178,10 @@ function getGenreNames(film) {
 function getImage(film) {
   if (film.poster_path === null) {
     let poster = `${errorUrl}`;
-    film.poster_path = poster;
+    film.poster = poster;
   } else {
     let poster = `https://www.themoviedb.org/t/p/w500${film.poster_path}`;
-    film.poster_path = poster;
+    film.poster = poster;
   }
 }
 getTrendMovies();
