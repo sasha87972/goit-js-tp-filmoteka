@@ -26,6 +26,7 @@
     "sass": "^1.43.4"
   },
   "dependencies": {
+    "@pnotify/core": "^5.2.0",
     "basiclightbox": "^5.0.4",
     "pnotify": "^5.2.0"
   }
