@@ -1,4 +1,3 @@
-// console.log('hello world')
 import FilmCard from '../templates/filmCard.hbs';
 import FilmModalTpl from '../templates/filmModal.hbs';
 import filmModalQueue from '../templates/filmModalQueue';
@@ -12,14 +11,6 @@ import getRefs from './get-refs';
 
 const refs = getRefs();
 
-const API_KEY = '0556b87ba267edab76fd3e7e8d7e5097';
-
-const BASE_URL = 'https://api.themoviedb.org/3';
-const TREND_URL = `${BASE_URL}/trending/movie/week`;
-const SEARCH_URL = `${BASE_URL}/search/movie`;
-const ID_URL = `${BASE_URL}/movie/`;
-const GENRE_URL = `${BASE_URL}/genre/movie/list`;
-
 let page = 1;
 
 refs.nextBtn.addEventListener('click', loadNext);
@@ -28,17 +19,17 @@ refs.homeBtn.addEventListener('click', setPage);
 refs.logo.addEventListener('click', setPage);
 
 async function searchMovies(query) {
-  const response = await fetch(`${SEARCH_URL}?api_key=${API_KEY}&query=${query}`);
+  const response = await fetch(`${refs.SEARCH_URL}?api_key=${refs.API_KEY}&query=${query}`);
   return await response.json();
 }
 
 async function getTrend() {
-  const response = await fetch(`${TREND_URL}?api_key=${API_KEY}&page=1`);
+  const response = await fetch(`${refs.TREND_URL}?api_key=${refs.API_KEY}&page=1`);
   return await response.json();
 }
 
 async function genreMovies() {
-  const response = await fetch(`${GENRE_URL}?api_key=${API_KEY}`);
+  const response = await fetch(`${refs.GENRE_URL}?api_key=${refs.API_KEY}`);
   return await response.json();
 }
 
@@ -73,7 +64,7 @@ function loadPrevious() {
 let genreArr = [];
 let genresList = [];
 
-fetch(`${GENRE_URL}?api_key=${API_KEY}`)
+fetch(`${refs.GENRE_URL}?api_key=${refs.API_KEY}`)
   .then(responce => (genreArr = responce.json()))
   .then(genr => {
     genreArr = genr.genres;
@@ -84,7 +75,7 @@ fetch(`${GENRE_URL}?api_key=${API_KEY}`)
   });
 
 function getTrendMovies() {
-  fetch(`${TREND_URL}?api_key=${API_KEY}&page=${page}`)
+  fetch(`${refs.TREND_URL}?api_key=${refs.API_KEY}&page=${page}`)
     .then(responce => {
       return responce.json();
     })
@@ -146,7 +137,7 @@ function getImages(moviesArr) {
 }
 
 function getDetailFilmInfo(id) {
-  fetch(`${BASE_URL}/movie/${id}?api_key=${API_KEY}`)
+  fetch(`${refs.ID_URL}${id}?api_key=${refs.API_KEY}`)
     .then(responce => {
       return responce.json();
     })
@@ -155,18 +146,13 @@ function getDetailFilmInfo(id) {
       getImage(film);
       const detailFilmInfo = film;
       localStorage.setItem('currentFilm', JSON.stringify(detailFilmInfo));
-
-      // console.log('watched btn',refs.watchedBtn.classList);
-      // console.log('qeue btn', refs.queueBtn.classList);
       if (refs.watchedBtn.classList.contains('header__btn--current')) {
         const filmInfo = filmModalQueue(film);
         refs.filmModalInfo.innerHTML = filmInfo;
-        console.log('current watched');
         return;
       } else if (refs.queueBtn.classList.contains('header__btn--current')) {
         const filmInfo = filmModalWatched(film);
         refs.filmModalInfo.innerHTML = filmInfo;
-        console.log('current queue');
         return;
       }
       const filmInfo = FilmModalTpl(film);
