@@ -19,8 +19,8 @@ refs.previousBtn.addEventListener('click', loadPrevious);
 refs.homeBtn.addEventListener('click', setPage);
 refs.logo.addEventListener('click', setPage);
 
-async function searchMovies(query) {
-  const response = await fetch(`${refs.SEARCH_URL}?api_key=${refs.API_KEY}&query=${query}`);
+async function searchMovies(query,page) {
+  const response = await fetch(`${refs.SEARCH_URL}?api_key=${refs.API_KEY}&query=${query}&page=${page}`);
   return await response.json();
 }
 
