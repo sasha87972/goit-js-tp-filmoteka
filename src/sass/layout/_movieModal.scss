@@ -68,8 +68,8 @@
   background: $whiteTextColor;
   color: $blackTextColor;
   &.dark-theme {
-    background: #545454;
-    color: #f7f7f7;
+    background: $greyTextColor;
+    color: $footerBackground;
   }
 }
 
@@ -126,7 +126,7 @@
   }
   font-size: 12px;
   line-height: 1.33;
-  color: #8c8c8c;
+  color: $modalInfoColor;
 }
 
 .info__description {
