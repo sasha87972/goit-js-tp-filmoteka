@@ -12,6 +12,7 @@ import getRefs from './get-refs';
 const refs = getRefs();
 
 let page = 1;
+refs.previousBtn.classList.add('visually-hidden');
 
 refs.nextBtn.addEventListener('click', loadNext);
 refs.previousBtn.addEventListener('click', loadPrevious);
@@ -46,7 +47,7 @@ function decrementPage() {
 }
 
 function loadNext() {
-  refs.previousBtn.classList.remove('hidden');
+  refs.previousBtn.classList.remove('visually-hidden');
   smoothScrool(0, 400);
   incrementPage();
   getTrendMovies(page);
@@ -54,7 +55,7 @@ function loadNext() {
 
 function loadPrevious() {
   if (page <= 2) {
-    refs.previousBtn.classList.add('hidden');
+    refs.previousBtn.classList.add('visually-hidden');
   }
   decrementPage();
   smoothScrool(0, 400);
