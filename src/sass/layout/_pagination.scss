@@ -78,3 +78,10 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+
+.btn-next:hover,
+.btn-next:focus,
+.btn-prev:hover,
+.btn-prev:focus {
+    background-color: lightgrey;
+}

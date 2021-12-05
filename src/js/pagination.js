@@ -1,5 +1,5 @@
 const ulTag = document.querySelector("pagination ul");
-let totalPages = 20;
+let totalPages = 100;
 
 function element(totalPages, page){
     let liTag = '';
