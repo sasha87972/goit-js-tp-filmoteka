@@ -2,7 +2,7 @@ export default [
   {
     name: 'Alexandra Vdovychenko',
     photo:
-      'https://raw.githubusercontent.com/sasha87972/goit-js-tp-filmoteka/main/src/images/team/alexandra.jpg',
+      'https://raw.githubusercontent.com/sasha87972/goit-js-tp-filmoteka/main/src/images/team/aleksandra.jpg',
   },
   {
     name: 'Iryna Shandar',
@@ -23,11 +23,6 @@ export default [
     name: 'Alexander Kovalenko',
     photo:
       'https://raw.githubusercontent.com/sasha87972/goit-js-tp-filmoteka/main/src/images/team/alexandr.jpg',
-  },
-  {
-    name: 'Vasily Vavrik',
-    photo:
-      'https://raw.githubusercontent.com/sasha87972/goit-js-tp-filmoteka/main/src/images/photo.jpg',
   },
   {
     name: 'Yuliya Danilenkova',
