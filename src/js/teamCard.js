@@ -3,7 +3,6 @@ export default [
     name: 'Alexandra Vdovychenko',
     photo:
       'https://raw.githubusercontent.com/sasha87972/goit-js-tp-filmoteka/main/src/images/team/aleksandra.jpg',
-
   },
   {
     name: 'Iryna Shandar',
