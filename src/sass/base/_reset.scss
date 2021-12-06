@@ -1,4 +1,5 @@
 html {
+  width: 100vw;
   box-sizing: border-box;
 }
 
@@ -9,13 +10,10 @@ html {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
-// * {
-//   outline: 2px solid tomato;
-// }
 
 body {
   font-family: $primaryFont;
-  font-family: 'Roboto', sans-serif;
+  overflow-x: hidden;
 }
 
 body.modal-open {

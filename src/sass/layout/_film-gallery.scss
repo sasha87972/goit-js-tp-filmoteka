@@ -1,3 +1,5 @@
+@import '../utils/variables';
+
 .pager {
   padding: 20px 0 40px 0;
   display: flex;
@@ -7,13 +9,19 @@
     padding: 60px 0 60px 0;
   }
 }
-.pager__body._container {
+
+.pager__text {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 24px;
+  @media screen and (max-width: 767px) {
+    font-size: 18px;
+  }
 }
 .film__list {
   @media screen and (min-width: 768px) {
     display: flex;
     flex-wrap: wrap;
-    
   }
 }
 
@@ -48,10 +56,9 @@
   }
 }
 
-.film__card {
-}
-
-.film__poster {
+.film__poster img {
+  border-radius: 5px;
+  height: 402px;
 }
 
 .film__description {
@@ -63,14 +70,17 @@
 }
 
 .film__title {
-  color: var(--black-text-color);
+  color: $blackTextColor;
   text-transform: uppercase;
+  height: 30px;
+  display: flex;
+  align-items: center;
 }
 
 .film__info {
   display: inline-block;
   line-height: 1.333;
-  color: var(--accent-color);
+  color: $accentColor;
 }
 
 .film__vote {
@@ -83,8 +93,29 @@
 
   text-align: center;
 
-  background-color: var(--accent-color);
-  color: var(--white-text-color);
+  background-color: $accentColor;
+  color: $whiteTextColor;
 
   border-radius: 5px;
+}
+
+.load {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.load__btn {
+  height: 44px;
+  width: 130px;
+  padding: auto;
+  text-transform: uppercase;
+  color: $blackTextColor;
+  background: none;
+  border: 1px solid $blackTextColor;
+  box-sizing: border-box;
+  border-radius: $borderRadius;
+  &:hover,
+  &:focus {
+    background-color: $accentColorHover;
+  }
 }

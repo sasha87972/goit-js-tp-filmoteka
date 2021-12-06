@@ -1,5 +1,7 @@
 @import '../utils/variables';
+
 .header--library {
+  background-size: cover;
   color: $whiteTextColor;
   @media screen and(max-width:767px) {
     background-image: url('/images/header-fav-320.jpg');
@@ -12,6 +14,7 @@
   }
 }
 .header--home {
+  background-size: cover;
   color: $whiteTextColor;
   @media screen and(max-width:767px) {
     background-image: url('/images/header-320.jpg');
@@ -47,14 +50,19 @@
   display: flex;
   justify-content: end;
   text-transform: uppercase;
-
 }
 .nav__item {
   display: flex;
   padding-top: 58px;
   &:not(:first-child) {
     margin-left: 39px;
-}
+  }
+  transition: color $primaryTransition;
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    color: $whiteTextHover;
+  }
 }
 .nav__item--curent {
   position: relative;
@@ -66,34 +74,40 @@
     content: '';
     width: 100%;
     height: 3px;
-    background: #ff6b08;
+    background: $heartColor;
     position: absolute;
   }
 }
-.nav__head{
+.container {
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+.nav__head {
   position: absolute;
+  cursor: pointer;
+  background: none;
   @media screen and(max-width:767px) {
-   // display: none;
     top: 46px;
   }
-  @media screen and(min-width:768px){
-    top:41px;
-    left: 105px;
+  @media screen and(min-width:768px) {
+    top: 41px;
     font-weight: 500;
     font-family: $primaryFont;
     font-style: normal;
     font-size: 30px;
     line-height: 1.16;
   }
-  &::before{
+  &::before {
     content: url('/images/icons/favicone.svg');
     width: 24px;
     height: 24px;
-    fill:#818181;
+    fill: $logoIcon;
     padding-right: 10px;
   }
 }
-.nav__head--text{
+.nav__head--text {
   @media screen and(max-width:767px) {
     display: none;
   }
@@ -101,12 +115,11 @@
 .btn {
   display: flex;
   justify-content: center;
-  padding-top: 37px;
-  padding-bottom: 65px;
+  padding-top: 40px;
+  padding-bottom: 80px;
   text-transform: uppercase;
-
 }
-.heder__btn {
+.header__btn {
   height: 44px;
   width: 130px;
   padding: auto;
@@ -116,29 +129,38 @@
   border: 1px solid $whiteTextColor;
   box-sizing: border-box;
   border-radius: $borderRadius;
+  transition: background $primaryTransition;
+  &:hover,
+  &:focus {
+    background-color: $accentColorHover;
+  }
+
   &:not(:last-child) {
-  margin-right: 15px;
-  @media screen and(max-width:767px) {
-    margin-right: 20px;
+    margin-right: 15px;
+    @media screen and(max-width:767px) {
+      margin-right: 20px;
+    }
   }
 }
-}
-.heder__btn:active {
-  background: #ff6b01;
+.header__btn--current {
+  background: $headerBtnColor;
+  border: none;
 }
 .search__form {
+  position: relative;
   display: flex;
   justify-content: center;
 }
 .search__input {
   margin-bottom: 97px;
   margin-top: 38px;
+  padding: 7px 10px;
   background: none;
   border-top: none;
   border-left: none;
   border-right: none;
   border-bottom: 0.5px solid $whiteTextColor;
-  color: $whiteTextColor;  
+  color: $whiteTextColor;
   @media screen and(max-width:767px) {
     width: 100%;
   }
@@ -146,16 +168,42 @@
     width: 336px;
   }
 }
-.search__btn{
+.search__inner {
+  border-bottom: 0.5px solid $whiteTextColor;
+  margin-top: 38px;
+  margin-bottom: 97px;
+}
+::placeholder {
+  color: $whiteTextColor;
+}
+.search__btn {
   background: none;
   padding: 0;
-  height: 15px;
-  width: 15px;
-  margin-top: 40px;
+  height: 29px;
+  width: 29px;
+  margin-top: 38px;
   border: none;
   border-top: none;
   border-left: none;
   border-right: none;
-  border-bottom: 0.5px solid $whiteTextColor;
-
+  border-bottom: 1px solid $whiteTextColor;
+}
+.search__icon {
+  transition: scale $primaryTransition;
+  &:hover,
+  &:focus {
+    transform: scale(1.2);
+  }
+}
+.search__text {
+  position: absolute;
+  bottom: 59px;
+  font-family: $primaryFont;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  color: $redTextColor;
+  @media screen and(max-width:767px) {
+    text-align: left;
+  }
 }
