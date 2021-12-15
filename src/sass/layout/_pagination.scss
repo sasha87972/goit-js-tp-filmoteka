@@ -1,87 +1,143 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/*!
+ * TOAST UI Pagination
+ * @version 3.4.1
+ * @author NHN FE Development Team <dl_javascript@nhn.com>
+ * @license MIT
+ */
+/* with custom styles */
+@charset 'utf-8';
 .pagination {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 50px;
-  color: black;
+  margin-bottom: 40px;
+  @media screen and (min-width: 767px) {
+    margin-bottom: 60px;
+  }
 }
 
-.pagination ul {
-  display: flex;
+.tui-pagination * {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.tui-pagination > .tui-page-btn.tui-first,
+.tui-pagination > .tui-page-btn.tui-last {
+  display: none;
 }
 
-.pagination ul li {
-  list-style: none;
-  line-height: 45px;
+.tui-pagination > .tui-page-btn.tui-prev-is-ellip,
+.tui-pagination > .tui-page-btn.tui-next-is-ellip {
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+}
+
+.tui-ico-next,
+.tui-ico-prev {
+  overflow: hidden;
+}
+
+.tui-pagination {
+  height: auto;
+  margin: 14px 0 12px;
+  line-height: normal;
   text-align: center;
-  font-size: 12px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  font-size: 0;
 }
 
-.pagination ul li.numb {
-  border-radius: 5%;
-  height: 40px;
+.tui-pagination .tui-page-btn {
+  display: inline-block;
+  position: relative;
   width: 40px;
-  margin: 0 3px;
+  height: 40px;
+  padding: 13px 0;
+  margin-left: 0;
+  color: $blackTextColor;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.333;
+  text-decoration: none;
+  vertical-align: middle;
+  border-radius: $borderRadius;
+  border: none;
 }
 
-.pagination ul li.dots {
+.tui-pagination .tui-page-btn:hover {
+  background-color: $footerBackground;
+}
+
+.tui-pagination .tui-is-selected,
+.tui-pagination strong {
+  color: $whiteTextColor;
+  background-color: $heartColor;
   cursor: default;
 }
 
-.pagination ul li.btn {
-  background: #f7f7f7;
-  border-radius: 5%;
-  padding: 0 20px;
+.tui-pagination .tui-is-selected:hover {
+  background-color: $heartColor;
 }
 
-.pagination ul li.active,
-.pagination ul li.numb:hover,
-.pagination ul li.numb:focus {
-  background: #ff6b08;
-  color: white;
+.tui-pagination .tui-prev,
+.tui-pagination .tui-next {
+  background-color: $footerBackground;
 }
 
-.pagination ul li.btn:hover,
-.pagination ul li.btn:focus {
-  background: #f7f7f7;
-  color: black;
+.tui-pagination .tui-ico-prev,
+.tui-pagination .tui-ico-next,
+.tui-pagination .tui-ico-ellip {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAiCAYAAAA+stv/AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6N0YwN0I4MUNDNjk0MTFFNjgzNjg5NTM0OEZDQ0YxNTUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6N0YwN0I4MURDNjk0MTFFNjgzNjg5NTM0OEZDQ0YxNTUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo3RjA3QjgxQUM2OTQxMUU2ODM2ODk1MzQ4RkNDRjE1NSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3RjA3QjgxQkM2OTQxMUU2ODM2ODk1MzQ4RkNDRjE1NSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PlM+zvEAAAMuSURBVHjaxFdrS5RREH73Zako6kt92x8QRR+qXYjoQneTyKCoMAmKspLI6EMQFBjSxehCdLGixa5maHbZilIro9uH2C2IoF+w/6EstJnleXV2mvO+W6458CA+45mZc+aceV5jyWTSU7aEsJOwUXO5XK7A5fN5vWYFoZawXnOJRKLAufLEDbKTsCmC08nblN/izDy+Iu9h0TNwSw3OlbwLXIXBSSuK6avkNSp5h+JKSX4nInlRTC6g0kheGZG8ykheFZHcjClb0Gcs6nP08Ad+DkRwXlRMH9XUoLpl4C1OWhd22oZWuDhpZkxfOHlxuypCc+UooiimbMFz4Vwewukiqo0iqkOKKIrpO5x1EZy0biSsjeDMPDHvL8yYgCUbTUST971RtjjNaO7VDRxLYOcIHwm3Hes6sOaJ4C4ScoSWEk+voBV8AtdxYVYLJwc/Q9jmKOAy4RZhreDShCYIWZQFUzQdx61dB3HghPexkwr4xhAuqQAvCWsID/kUcaM/42l1Y815R/KicR2o4SuM0kdYfBcBWSN6CGMJZ1WgNzi1DNZwu74QFqNAXnMqLLmH6gN7S1iFvk4kXCV8FQEnERpVwPeElRgw7G8mfCMswqY4ToPQimtaK3xjTvcr7hcQZjz/vyuuX+iDUytkAXNQ2X7snm0q4TV21mgknofXs0/c/mlYw3fgWMToHixgPo6xHq+CbTqhF6/hhJF8AfpfJ57rDKw5TjhZin746DEH2oELwjYTgY6iAOvDIoNR2w5uFvreEPIC/tAKvoR7CFsQMLBdhEOiFdrYv1kNou2EA65B5NKP/6YFLl0YdS2IkRYEzyKmnknR7/Q/weBpQT9aVQu8TCYjtaIVk3JETqAFWrDB4W8WQydcDbPZrL4HUb97qVSqR4zhcYSb6k96MVXZPx5CNTS1BoZmUXwY7XuHt8yDaIIhWB+En4u8YJ7AMO9QFoLFb3sy4Yjyf8KceUGYQjg8El9EPw39KEUrylJAMDFPG7tnmw1/E1DWFrB4PSUcJFwx/HMJjzEd085X8I/JF+LjpR7PURt/Dzwg7Bb6UtYC9mL2dzr8nHiraxBJ+y3AAOpc//DIQNiHAAAAAElFTkSuQmCC)
+    no-repeat 0 0;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 0px;
 }
 
-.btn-next {
-  cursor: pointer;
-  margin-right: 10px;
-  width: 40px;
-  min-height: 40px;
-  background-color: #f7f7f7;
-  border-radius: 4px;
-  //   background-image: url('../images/arrow-right.svg');
-  background-repeat: no-repeat;
-  background-position: center;
+.tui-pagination .tui-ico-first {
+  width: 11px;
+  height: 10px;
+  background-position: 0px 0px;
 }
 
-.btn-prev {
-  cursor: pointer;
-  margin-right: 10px;
-  min-height: 40px;
-  width: 40px;
-  background-color: #f7f7f7;
-  border-radius: 4px;
-  //   background-image: url('../images/arrow-left.svg');
-  background-repeat: no-repeat;
-  background-position: center;
+.tui-pagination .tui-ico-prev {
+  width: 6px;
+  height: 10px;
+  background-position: -26px 0px;
 }
 
-.btn-next:hover,
-.btn-next:focus,
-.btn-prev:hover,
-.btn-prev:focus {
-  background-color: lightgrey;
+.tui-pagination .tui-ico-next {
+  width: 6px;
+  height: 10px;
+  background-position: -13px -24px;
 }
+
+// .tui-pagination .tui-ico-last {
+//   width: 11px;
+//   height: 10px;
+//   background-position: 0px -12px;
+// }
+
+.tui-pagination .tui-ico-ellip {
+  width: 10px;
+  height: 2px;
+  background-position: 0px -24px;
+}
+
+.tui-pagination .tui-is-disabled:hover {
+  background-color: $footerBackground;
+  cursor: default;
+}
+
+.tui-pagination .tui-is-disabled .tui-ico-prev {
+  background-position: -26px -12px;
+}
+
+.tui-pagination .tui-is-disabled .tui-ico-first {
+  background-position: -13px 0px;
+}
+
+.tui-pagination .tui-is-disabled .tui-ico-next {
+  background-position: -21px -24px;
+}
+
+// .tui-pagination .tui-is-disabled .tui-ico-last {
+//   background-position: -13px -12px;
+// }
