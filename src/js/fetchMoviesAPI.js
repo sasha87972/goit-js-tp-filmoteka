@@ -2,7 +2,7 @@ import FilmCard from '../templates/filmCard.hbs';
 import FilmModalTpl from '../templates/filmModal.hbs';
 import filmModalQueue from '../templates/filmModalQueue';
 import filmModalWatched from '../templates/filmModalWatche';
-import smoothScrool from './smothScrool';
+import renderPagination from './pagination';
 
 import showErrorMsg from './search_query';
 import errorUrl from '../images/no-poster.jpg';
@@ -12,14 +12,8 @@ import getRefs from './get-refs';
 const refs = getRefs();
 
 let page = 1;
-refs.previousBtn.classList.add('visually-hidden');
 
-refs.nextBtn.addEventListener('click', loadNext);
-refs.previousBtn.addEventListener('click', loadPrevious);
-refs.homeBtn.addEventListener('click', setPage);
-refs.logo.addEventListener('click', setPage);
-
-async function searchMovies(query, page) {
+async function searchMovies(query) {
   const response = await fetch(
     `${refs.SEARCH_URL}?api_key=${refs.API_KEY}&query=${query}&page=${page}`,
   );
@@ -27,7 +21,7 @@ async function searchMovies(query, page) {
 }
 
 async function getTrend() {
-  const response = await fetch(`${refs.TREND_URL}?api_key=${refs.API_KEY}&page=1`);
+  const response = await fetch(`${refs.TREND_URL}?api_key=${refs.API_KEY}&page=${page}`);
   return await response.json();
 }
 
@@ -36,32 +30,12 @@ async function genreMovies() {
   return await response.json();
 }
 
-function setPage() {
+function setPage(currentPage) {
+  return (page = currentPage);
+}
+
+function resetPage() {
   return (page = 1);
-}
-
-function incrementPage() {
-  return (page += 1);
-}
-
-function decrementPage() {
-  return (page -= 1);
-}
-
-function loadNext() {
-  refs.previousBtn.classList.remove('visually-hidden');
-  smoothScrool(0, 400);
-  incrementPage();
-  getTrendMovies(page);
-}
-
-function loadPrevious() {
-  if (page <= 2) {
-    refs.previousBtn.classList.add('visually-hidden');
-  }
-  decrementPage();
-  smoothScrool(0, 400);
-  getTrendMovies(page);
 }
 
 let genreArr = [];
@@ -83,6 +57,7 @@ function getTrendMovies() {
       return responce.json();
     })
     .then(film => {
+      renderPagination(film);
       const trendMovies = film.results;
       getGenreString(trendMovies);
       getYearString(trendMovies);
@@ -195,4 +170,6 @@ export {
   searchMovies,
   getTrend,
   genreMovies,
+  setPage,
+  resetPage,
 };

@@ -20,6 +20,7 @@ export default function getRefs() {
     previousBtn: document.querySelector('.previous'),
     blockLoad: document.querySelector('.load'),
     form: document.getElementById('js-search__form'),
+    pagBox: document.querySelector('.tui-pagination'),
     //header refs
     header: document.querySelector('header'),
     logo: document.querySelector('.nav__head'),

@@ -1,55 +1,52 @@
-const ulTag = document.querySelector("pagination ul");
-let totalPages = 100;
+import Pagination from 'tui-pagination';
+import { getTrendMovies, searchMovies, setPage } from './fetchMoviesAPI';
+import renderPage from './renderCard';
+import smoothScrool from './smothScrool';
+import getRefs from './get-refs';
 
-function element(totalPages, page){
-    let liTag = '';
-    let activeLi;
-    let beforePages = page - 1;
-    let afterPages = page + 1;
-    if(page > 1) {
-        liTag += `<li class="btn-prev" onclick="element(totalPages, ${page - 1})"><span><i class="fas fa-angel-left"></i> < </span></li>`;
-    }
-    if(page > 2){
-        liTag += `<li class="numb" onclick="element(totalPages, 1)"><span>1</span></li>`;
-        if(page > 3 ){
-            liTag += `<li class="dots"><span>...</span></li>`;
-        }
-    }
-    if(page == totalPages){
-        beforePages = beforePages - 2;
-    }else if(page == totalPages - 1){
-        beforePages = beforePages - 1;
-    }
-    if(page == 1){
-        afterPages = afterPages + 2;
-    }else if(page == 2){
-        afterPages = afterPages + 1;
-    }
-    for (let pageLenght = beforePages; pageLenght <= afterPages; pageLenght++) {
-        if(pageLenght > totalPages){
-            continue;             
-        }
-        if(pageLenght == 0){
-            pageLenght = pageLenght + 1;
-        }
-        if(page == pageLenght){
-            activeLi = "active";
-        }else{
-            activeLi = ""; 
-        }
-        liTag += `<li class="numb ${activeLi}" onclick="element(totalPages, ${pageLenght})"><span>${pageLenght}</span></li>`
-    }
-    if(page < totalPages - 1){
-        if(page < totalPages - 2){
-            liTag += `<li class="dots"><span>...</span></li>`;
-        }
-        liTag += `<li class="numb" onclick="element(totalPages, ${totalPages})"><span>${totalPages}</span></li>`;
-    }
+const refs = getRefs();
 
-    if(page < totalPages){
-        liTag += `<li class="btn-next" onclick="element(totalPages, ${page + 1})"><span><i class="fas fa-angel-right"></i> > </span></li>`;
-    }
-    ulTag.innerHTML = liTag;
-
+export default function renderPagination(result, query, value) {
+  const container = refs.pagBox;
+  const options = {
+    totalItems: result.total_results,
+    itemsPerPage: 20,
+    visiblePages: 5,
+    page: result.page,
+    centerAlign: true,
+    firstItemClassName: 'tui-first-child',
+    lastItemClassName: 'tui-last-child',
+    template: {
+      page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+      currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+      moveButton:
+        '<a href="#" class="tui-page-btn tui-{{type}}">' +
+        '<span class="tui-ico-{{type}}">{{type}}</span>' +
+        '</a>',
+      disabledMoveButton:
+        '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+        '<span class="tui-ico-{{type}}">{{type}}</span>' +
+        '</span>',
+      moreButton:
+        '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+        '<span class="tui-ico-ellip">...</span>' +
+        '</a>',
+    },
+  };
+  const pagination = new Pagination(container, options);
+  if (query === 'search') {
+    pagination.on('afterMove', event => {
+      const currentPage = event.page;
+      setPage(currentPage);
+      searchMovies(value).then(r => renderPage(r.results));
+      smoothScrool(0, 400);
+    });
+  } else {
+    pagination.on('afterMove', event => {
+      const currentPage = event.page;
+      setPage(currentPage);
+      getTrendMovies();
+      smoothScrool(0, 400);
+    });
+  }
 }
-element(totalPages, 8);

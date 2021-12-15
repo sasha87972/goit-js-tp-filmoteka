@@ -1,5 +1,5 @@
+import { openWatched, openQueue } from './header';
 import getRefs from './get-refs';
-import FilmCard from '../templates/filmCard.hbs';
 
 const refs = getRefs();
 
@@ -24,11 +24,13 @@ function onRemove() {
     const index = queue.findIndex(obj => obj.id === id);
     const newData = [...queue.slice(0, index), ...queue.slice(index + 1)];
     localStorage.setItem('filmQueue', JSON.stringify(newData));
+    openQueue();
   } else if (watchedBtnCurrent) {
     const id = currentFilm.id;
     const index = watched.findIndex(obj => obj.id === id);
     const newData = [...watched.slice(0, index), ...watched.slice(index + 1)];
     localStorage.setItem('filmWatched', JSON.stringify(newData));
+    openWatched();
   }
 }
 

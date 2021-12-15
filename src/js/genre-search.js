@@ -1,4 +1,5 @@
 import { getTrend } from './fetchMoviesAPI';
+import renderPagination from './pagination';
 import renderCards from './renderCard';
 import getRefs from './get-refs';
 
@@ -7,9 +8,9 @@ const refs = getRefs();
 refs.genre.addEventListener('click', async e => {
   e.preventDefault();
   if (e.target.nodeName != 'BUTTON') return;
-
   const genreID = e.target.dataset.sources;
   const objList = await getTrend();
+  renderPagination(objList, 'genre');
   await renderElements(objList.results, genreID);
 });
 
