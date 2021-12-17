@@ -6,6 +6,25 @@
  */
 /* with custom styles */
 @charset 'utf-8';
+body.dark-theme {
+  & .tui-pagination .tui-page-btn,
+  & .tui-pagination .tui-ico-ellip {
+    background-color: $grayColor;
+    color: $whiteTextColor;
+  }
+  & .tui-pagination .tui-page-btn:hover,
+  & .tui-pagination .tui-prev,
+  & .tui-pagination .tui-next,
+  & .tui-pagination .tui-is-disabled:hover {
+    background-color: $modalInfoColor;
+  }
+  .tui-pagination .tui-is-selected,
+  .tui-pagination strong {
+    color: $whiteTextColor;
+    background-color: $heartColor;
+    cursor: default;
+  }
+}
 .pagination {
   margin-bottom: 40px;
   @media screen and (min-width: 767px) {
@@ -109,12 +128,6 @@
   background-position: -13px -24px;
 }
 
-// .tui-pagination .tui-ico-last {
-//   width: 11px;
-//   height: 10px;
-//   background-position: 0px -12px;
-// }
-
 .tui-pagination .tui-ico-ellip {
   width: 10px;
   height: 2px;
@@ -137,7 +150,3 @@
 .tui-pagination .tui-is-disabled .tui-ico-next {
   background-position: -21px -24px;
 }
-
-// .tui-pagination .tui-is-disabled .tui-ico-last {
-//   background-position: -13px -12px;
-// }
