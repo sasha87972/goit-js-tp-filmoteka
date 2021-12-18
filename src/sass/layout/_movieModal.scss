@@ -203,7 +203,7 @@
   transition: color $primaryTransition, background $primaryTransition;
   &:focus,
   &:hover,
-  .cheked {
+  &.cheked {
     border: none;
     background: $accentColor;
     color: $whiteTextColor;
